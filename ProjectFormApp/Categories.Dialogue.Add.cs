@@ -36,7 +36,7 @@ namespace ProjectFormApp
 
         private void frmOrdersDialogueAdd_Load(object sender, EventArgs e)
         {
-            //ddlManager.DataSource = context.Users.Where(x => x.Role == "Manager").ToList();
+            ddlManager.DataSource = context.Users.Where(x => x.Role == "Manager").ToList();
             ddlManager.DisplayMember = "Name";
             ddlManager.ValueMember = "UserId";
             ddlManager.SelectedItem = null;
