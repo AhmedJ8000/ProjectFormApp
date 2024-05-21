@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 
 namespace HSMSBusinessObjects
 {
-    public partial class ProjectIdentityDBContext : IdentityDbContext<IdentityUser>
+    public partial class ProjectIdentityDBContext : DbContext
     {
         public ProjectIdentityDBContext()
         {
@@ -147,7 +144,14 @@ namespace HSMSBusinessObjects
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ManagerId).HasColumnName("ManagerID");
+                entity.Property(e => e.ManagerId)
+                    .HasMaxLength(450)
+                    .HasColumnName("ManagerID");
+
+                entity.HasOne(d => d.Manager)
+                    .WithMany(p => p.Categories)
+                    .HasForeignKey(d => d.ManagerId)
+                    .HasConstraintName("FK_Category_AspNetUsers");
             });
 
             modelBuilder.Entity<Comment>(entity =>
@@ -164,7 +168,15 @@ namespace HSMSBusinessObjects
 
                 entity.Property(e => e.Time).HasColumnType("time(0)");
 
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(450)
+                    .HasColumnName("UserID");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Comments)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Comment_AspNetUsers");
             });
 
             modelBuilder.Entity<Document>(entity =>
@@ -177,7 +189,9 @@ namespace HSMSBusinessObjects
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DocumentName).HasMaxLength(50);
+                entity.Property(e => e.DocumentName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.DocumentType)
                     .HasMaxLength(10)
@@ -185,7 +199,15 @@ namespace HSMSBusinessObjects
 
                 entity.Property(e => e.UploadDate).HasColumnType("date");
 
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(450)
+                    .HasColumnName("UserID");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Documents)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Document_AspNetUsers");
             });
 
             modelBuilder.Entity<Log>(entity =>
@@ -218,7 +240,15 @@ namespace HSMSBusinessObjects
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(450)
+                    .HasColumnName("UserID");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Logs)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Log_AspNetUsers");
             });
 
             modelBuilder.Entity<Notification>(entity =>
@@ -267,9 +297,7 @@ namespace HSMSBusinessObjects
             {
                 entity.ToTable("Service_Request");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.CommentId).HasColumnName("CommentID");
 
@@ -283,12 +311,6 @@ namespace HSMSBusinessObjects
                     .WithMany(p => p.ServiceRequests)
                     .HasForeignKey(d => d.CommentId)
                     .HasConstraintName("FK_Service_Request_Comment");
-
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.ServiceRequest)
-                    .HasForeignKey<ServiceRequest>(d => d.Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Service_Request_Service");
             });
 
             OnModelCreatingPartial(modelBuilder);

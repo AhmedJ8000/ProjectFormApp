@@ -12,6 +12,5 @@ namespace HSMSBusinessObjects
         public int? CommentId { get; set; }
 
         public virtual Comment? Comment { get; set; }
-        public virtual Service IdNavigation { get; set; } = null!;
     }
 }

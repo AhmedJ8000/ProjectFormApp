@@ -13,8 +13,9 @@ namespace HSMSBusinessObjects
         public int CategoryId { get; set; }
         public string CategoryName { get; set; } = null!;
         public string? Description { get; set; }
-        public int ManagerId { get; set; }
+        public string? ManagerId { get; set; }
 
+        public virtual AspNetUser? Manager { get; set; }
         public virtual ICollection<Service> Services { get; set; }
     }
 }

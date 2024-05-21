@@ -14,8 +14,9 @@ namespace HSMSBusinessObjects
         public string? Notes { get; set; }
         public DateTime Date { get; set; }
         public TimeSpan Time { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; } = null!;
 
+        public virtual AspNetUser User { get; set; } = null!;
         public virtual ICollection<ServiceRequest> ServiceRequests { get; set; }
     }
 }

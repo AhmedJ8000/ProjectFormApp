@@ -10,6 +10,10 @@ namespace HSMSBusinessObjects
             AspNetUserClaims = new HashSet<AspNetUserClaim>();
             AspNetUserLogins = new HashSet<AspNetUserLogin>();
             AspNetUserTokens = new HashSet<AspNetUserToken>();
+            Categories = new HashSet<Category>();
+            Comments = new HashSet<Comment>();
+            Documents = new HashSet<Document>();
+            Logs = new HashSet<Log>();
             Roles = new HashSet<AspNetRole>();
         }
 
@@ -32,6 +36,10 @@ namespace HSMSBusinessObjects
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetUserToken> AspNetUserTokens { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Document> Documents { get; set; }
+        public virtual ICollection<Log> Logs { get; set; }
 
         public virtual ICollection<AspNetRole> Roles { get; set; }
     }

@@ -13,14 +13,14 @@ namespace ProjectFormApp
 {
     public partial class frmCategoriesDialogueAdd : Form
     {
-        FormsIdentityContext context;
+        ProjectIdentityDBContext context;
         Category category;
 
         public frmCategoriesDialogueAdd()
         {
             InitializeComponent();
 
-            context = new FormsIdentityContext();
+            context = new ProjectIdentityDBContext();
 
             category = new Category();
         }
@@ -29,16 +29,17 @@ namespace ProjectFormApp
         {
             InitializeComponent();
 
-            context = new FormsIdentityContext();
+            context = new ProjectIdentityDBContext();
 
             category = c;
         }
 
         private void frmOrdersDialogueAdd_Load(object sender, EventArgs e)
         {
-            //ddlManager.DataSource = context.Users.Where(x => x.Role == "Manager").ToList();
-            ddlManager.DisplayMember = "Name";
-            ddlManager.ValueMember = "UserId";
+            
+            ddlManager.DataSource = context.AspNetUsers.Where(x => x.Email == "manager@test.com").ToList();
+            ddlManager.DisplayMember = "UserName";
+            ddlManager.ValueMember = "ID";
             ddlManager.SelectedItem = null;
 
             if(category.CategoryId > 0)
@@ -48,13 +49,15 @@ namespace ProjectFormApp
                 txtDescription.Text = category.Description;
                 ddlManager.SelectedValue = category.ManagerId;
             }
+            
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            
             try
             {
-                //category.Manager = null;
+                category.Manager = null;
 
                 category.CategoryName = txtName.Text;
                 category.Description = txtDescription.Text;
@@ -62,13 +65,13 @@ namespace ProjectFormApp
 
                 if(ddlManager.SelectedItem != null)
                 {
-                    category.ManagerId = Convert.ToInt32(ddlManager.SelectedValue);
+                    category.ManagerId = ddlManager.SelectedValue.ToString();
                 }
                 else
                 {
                     return;
                 }
-                //category.Manager = context.Users.Where(x => x.UserId == category.ManagerId).FirstOrDefault();
+                category.Manager = context.AspNetUsers.Where(x => x.Id == category.ManagerId).FirstOrDefault();
 
                 if(category.CategoryId > 0)
                 {
@@ -89,6 +92,7 @@ namespace ProjectFormApp
             {
                 MessageBox.Show(ex.Message);
             }
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

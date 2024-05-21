@@ -1,10 +1,9 @@
-﻿using HSMSBusinessObjects;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace HSMSBusinessObjects
+namespace ProjectFormApp
 { 
 
 public class FormsIdentityContext : IdentityDbContext<IdentityUser>
@@ -35,18 +34,6 @@ public class FormsIdentityContext : IdentityDbContext<IdentityUser>
         // Add your customizations after calling base.OnModelCreating(builder);
     }
 
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; } = null!;
-        public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; } = null!;
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; } = null!;
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; } = null!;
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; } = null!;
-        public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; } = null!;
-        public virtual DbSet<Category> Categories { get; set; } = null!;
-        public virtual DbSet<Comment> Comments { get; set; } = null!;
-        public virtual DbSet<Document> Documents { get; set; } = null!;
-        public virtual DbSet<Log> Logs { get; set; } = null!;
-        public virtual DbSet<Notification> Notifications { get; set; } = null!;
-        public virtual DbSet<Service> Services { get; set; } = null!;
-        public virtual DbSet<ServiceRequest> ServiceRequests { get; set; } = null!;
-    }
+    DbSet<IdentityUser> ApplicationUsers { get; set; }
+}
 }
