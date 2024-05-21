@@ -13,13 +13,13 @@ namespace ProjectFormApp
 {
     public partial class frmServicesDialogueAdd : Form
     {
-        FormsIdentityContext context;
+        ProjectIdentityDBContext context;
         Service service;
         public frmServicesDialogueAdd()
         {
             InitializeComponent();
 
-            context = new FormsIdentityContext();
+            context = new ProjectIdentityDBContext();
 
             service = new Service();
         }
@@ -28,13 +28,14 @@ namespace ProjectFormApp
         {
             InitializeComponent();
 
-            context = new FormsIdentityContext();
+            context = new ProjectIdentityDBContext();
 
             service = s;
         }
 
         private void frmServicesDialogueAdd_Load(object sender, EventArgs e)
         {
+            
             ddlManager.DataSource = context.Categories.ToList();
             ddlManager.DisplayMember = "CategoryName";
             ddlManager.ValueMember = "CategoryId";
@@ -48,6 +49,7 @@ namespace ProjectFormApp
                 svcPriceTxt.Text = service.Price.ToString();
                 ddlManager.SelectedValue = service.CategoryId;
             }
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

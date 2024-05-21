@@ -28,7 +28,7 @@ namespace ProjectFormApp
 
         private void Login_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private async void btnLogin_Click(object sender, EventArgs e)
@@ -41,6 +41,8 @@ namespace ProjectFormApp
                 Home home = new Home();
                 this.Hide();
                 home.Show();
+                CategoriesMgmt c = new CategoriesMgmt();
+                c.Show();
             }
             else
             {

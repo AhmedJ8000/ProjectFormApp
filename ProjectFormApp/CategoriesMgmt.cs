@@ -13,11 +13,11 @@ namespace ProjectFormApp
 {
     public partial class CategoriesMgmt : Form
     {
-        FormsIdentityContext context;
+        ProjectIdentityDBContext context;
         public CategoriesMgmt()
         {
             InitializeComponent();
-            context = new FormsIdentityContext();
+            context = new ProjectIdentityDBContext();
         }
 
         private void CategoriesMgmt_Load(object sender, EventArgs e)
@@ -36,22 +36,22 @@ namespace ProjectFormApp
             {
                 dgvCategories.DataSource = null;
 
-               // var ordersToShow = context.Categories.AsQueryable();
+                var ordersToShow = context.Categories.AsQueryable();
 
                 if (txtCategoryID.Text != "")
                 {
-                   // ordersToShow = ordersToShow.Where(x => x.CategoryId == Convert.ToInt32(txtCategoryID.Text));
+                    ordersToShow = ordersToShow.Where(x => x.CategoryId == Convert.ToInt32(txtCategoryID.Text));
                 }
 
-              //  dgvCategories.DataSource = ordersToShow
-              //      .OrderBy(m => m.CategoryId)
-              //      .Select(o => new
-              //      {
-               //         OrderID = o.CategoryId,
-                //        CategoryName = o.CategoryName,
-              //          Description = o.Description,
-              //          ManagerName = o.Manager.UserName
-               //     }).ToList();
+                dgvCategories.DataSource = ordersToShow
+                    .OrderBy(m => m.CategoryId)
+                    .Select(o => new
+                    {
+                        OrderID = o.CategoryId,
+                        CategoryName = o.CategoryName,
+                        Description = o.Description,
+                        ManagerName = o.Manager.UserName
+                    }).ToList();
             }
             catch (Exception ex)
             {
@@ -84,10 +84,11 @@ namespace ProjectFormApp
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 int firstCell = Convert.ToInt32(dgvCategories.SelectedCells[0].OwningRow.Cells[0].Value);
-                //Category category = context.Categories.Find(firstCell);
+                Category category = context.Categories.Find(firstCell);
                 frmCategoriesDialogueAdd frmCategoriesAdd = new frmCategoriesDialogueAdd(category);
                 frmCategoriesAdd.ShowDialog();
 
@@ -100,21 +101,24 @@ namespace ProjectFormApp
             {
                 MessageBox.Show(ex.Message);
             }
+            
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            
             int firstCell = Convert.ToInt32(dgvCategories.SelectedCells[0].OwningRow.Cells[0].Value);
-           // Category category = context.Categories.Find(firstCell);
+            Category category = context.Categories.Find(firstCell);
 
             if (MessageBox.Show("Are you sure you want to delete this category (" + firstCell + ")?", "Confirm Delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                //context.Categories.Remove(category);
+                context.Categories.Remove(category);
 
                 context.SaveChanges();
 
                 RefreshGrid();
             }
+            
         }
     }
 }
