@@ -15,7 +15,7 @@ namespace HSMSBusinessObjects
         public string? Description { get; set; }
         public string? ManagerId { get; set; }
 
-        public virtual AspNetUser? Manager { get; set; }
+        public virtual AspNetUser Manager { get; set; }
         public virtual ICollection<Service> Services { get; set; }
     }
 }
