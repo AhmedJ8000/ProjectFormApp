@@ -53,5 +53,23 @@ namespace ProjectFormApp
         {
             Application.Exit();
         }
+
+        private void monRptBtn_Click(object sender, EventArgs e)
+        {
+            Monitoring_and_Reporting mar = new Monitoring_and_Reporting();
+            mar.ShowDialog();
+        }
+
+        private void categoriesMgmt_Click(object sender, EventArgs e)
+        {
+            CategoriesMgmt cm = new CategoriesMgmt();
+            cm.ShowDialog();
+        }
+
+        private void serviceMgmt_Click(object sender, EventArgs e)
+        {
+            ServicesMgmt sm = new ServicesMgmt();
+            sm.ShowDialog();
+        }
     }
 }

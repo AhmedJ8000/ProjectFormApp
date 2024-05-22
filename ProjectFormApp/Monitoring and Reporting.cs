@@ -36,5 +36,10 @@ namespace ProjectFormApp
         {
 
         }
+
+        private void Monitoring_and_Reporting_Load(object sender, EventArgs e)
+        {
+            Username_lbl.Text = Global.User.UserName;
+        }
     }
 }

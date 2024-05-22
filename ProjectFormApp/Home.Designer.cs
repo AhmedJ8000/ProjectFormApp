@@ -29,139 +29,185 @@ namespace ProjectFormApp
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblUserName = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblUserEmail = new System.Windows.Forms.Label();
-            this.btnLogout = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lblUserID = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblRole = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            label1 = new Label();
+            lblUserName = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            lblUserEmail = new Label();
+            btnLogout = new Button();
+            label4 = new Label();
+            lblUserID = new Label();
+            label5 = new Label();
+            lblRole = new Label();
+            monRptBtn = new Button();
+            serviceMgmt = new Button();
+            categoriesMgmt = new Button();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Welcome:";
+            label1.AutoSize = true;
+            label1.Location = new Point(39, 53);
+            label1.Name = "label1";
+            label1.Size = new Size(74, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Welcome:";
             // 
             // lblUserName
             // 
-            this.lblUserName.AutoSize = true;
-            this.lblUserName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblUserName.Location = new System.Drawing.Point(107, 93);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(79, 15);
-            this.lblUserName.TabIndex = 1;
-            this.lblUserName.Text = "lblUserName";
+            lblUserName.AutoSize = true;
+            lblUserName.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblUserName.Location = new Point(122, 124);
+            lblUserName.Name = "lblUserName";
+            lblUserName.Size = new Size(100, 20);
+            lblUserName.TabIndex = 1;
+            lblUserName.Text = "lblUserName";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(34, 93);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "UserName:";
+            label2.AutoSize = true;
+            label2.Location = new Point(39, 124);
+            label2.Name = "label2";
+            label2.Size = new Size(81, 20);
+            label2.TabIndex = 2;
+            label2.Text = "UserName:";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(34, 117);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 15);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Email:";
+            label3.AutoSize = true;
+            label3.Location = new Point(39, 156);
+            label3.Name = "label3";
+            label3.Size = new Size(49, 20);
+            label3.TabIndex = 4;
+            label3.Text = "Email:";
             // 
             // lblUserEmail
             // 
-            this.lblUserEmail.AutoSize = true;
-            this.lblUserEmail.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblUserEmail.Location = new System.Drawing.Point(107, 117);
-            this.lblUserEmail.Name = "lblUserEmail";
-            this.lblUserEmail.Size = new System.Drawing.Size(75, 15);
-            this.lblUserEmail.TabIndex = 3;
-            this.lblUserEmail.Text = "lblUserEmail";
+            lblUserEmail.AutoSize = true;
+            lblUserEmail.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblUserEmail.Location = new Point(122, 156);
+            lblUserEmail.Name = "lblUserEmail";
+            lblUserEmail.Size = new Size(96, 20);
+            lblUserEmail.TabIndex = 3;
+            lblUserEmail.Text = "lblUserEmail";
             // 
             // btnLogout
             // 
-            this.btnLogout.BackColor = System.Drawing.Color.Lavender;
-            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogout.Location = new System.Drawing.Point(119, 184);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(224, 35);
-            this.btnLogout.TabIndex = 5;
-            this.btnLogout.Text = "Logout";
-            this.btnLogout.UseVisualStyleBackColor = false;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            btnLogout.BackColor = Color.Lavender;
+            btnLogout.FlatStyle = FlatStyle.Flat;
+            btnLogout.Location = new Point(201, 374);
+            btnLogout.Margin = new Padding(3, 4, 3, 4);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(256, 47);
+            btnLogout.TabIndex = 5;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(34, 68);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(21, 15);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "ID:";
+            label4.AutoSize = true;
+            label4.Location = new Point(39, 91);
+            label4.Name = "label4";
+            label4.Size = new Size(27, 20);
+            label4.TabIndex = 7;
+            label4.Text = "ID:";
             // 
             // lblUserID
             // 
-            this.lblUserID.AutoSize = true;
-            this.lblUserID.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblUserID.Location = new System.Drawing.Point(107, 68);
-            this.lblUserID.Name = "lblUserID";
-            this.lblUserID.Size = new System.Drawing.Size(59, 15);
-            this.lblUserID.TabIndex = 6;
-            this.lblUserID.Text = "lblUserID";
+            lblUserID.AutoSize = true;
+            lblUserID.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblUserID.Location = new Point(122, 91);
+            lblUserID.Name = "lblUserID";
+            lblUserID.Size = new Size(74, 20);
+            lblUserID.TabIndex = 6;
+            lblUserID.Text = "lblUserID";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(34, 143);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(33, 15);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Role:";
+            label5.AutoSize = true;
+            label5.Location = new Point(39, 191);
+            label5.Name = "label5";
+            label5.Size = new Size(42, 20);
+            label5.TabIndex = 9;
+            label5.Text = "Role:";
             // 
             // lblRole
             // 
-            this.lblRole.AutoSize = true;
-            this.lblRole.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblRole.Location = new System.Drawing.Point(107, 143);
-            this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(45, 15);
-            this.lblRole.TabIndex = 8;
-            this.lblRole.Text = "lblRole";
+            lblRole.AutoSize = true;
+            lblRole.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblRole.Location = new Point(122, 191);
+            lblRole.Name = "lblRole";
+            lblRole.Size = new Size(57, 20);
+            lblRole.TabIndex = 8;
+            lblRole.Text = "lblRole";
+            // 
+            // monRptBtn
+            // 
+            monRptBtn.BackColor = SystemColors.ActiveCaption;
+            monRptBtn.FlatStyle = FlatStyle.Flat;
+            monRptBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            monRptBtn.Location = new Point(12, 238);
+            monRptBtn.Name = "monRptBtn";
+            monRptBtn.Size = new Size(216, 29);
+            monRptBtn.TabIndex = 10;
+            monRptBtn.Text = "Monitoring and Reporting";
+            monRptBtn.UseVisualStyleBackColor = false;
+            monRptBtn.Click += monRptBtn_Click;
+            // 
+            // serviceMgmt
+            // 
+            serviceMgmt.BackColor = SystemColors.ActiveCaption;
+            serviceMgmt.FlatStyle = FlatStyle.Flat;
+            serviceMgmt.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            serviceMgmt.Location = new Point(12, 273);
+            serviceMgmt.Name = "serviceMgmt";
+            serviceMgmt.Size = new Size(216, 29);
+            serviceMgmt.TabIndex = 11;
+            serviceMgmt.Text = "Services Management";
+            serviceMgmt.UseVisualStyleBackColor = false;
+            serviceMgmt.Click += serviceMgmt_Click;
+            // 
+            // categoriesMgmt
+            // 
+            categoriesMgmt.BackColor = SystemColors.ActiveCaption;
+            categoriesMgmt.FlatStyle = FlatStyle.Flat;
+            categoriesMgmt.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            categoriesMgmt.Location = new Point(12, 308);
+            categoriesMgmt.Name = "categoriesMgmt";
+            categoriesMgmt.Size = new Size(216, 29);
+            categoriesMgmt.TabIndex = 12;
+            categoriesMgmt.Text = "Categories Management";
+            categoriesMgmt.UseVisualStyleBackColor = false;
+            categoriesMgmt.Click += categoriesMgmt_Click;
             // 
             // Home
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(436, 261);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.lblRole);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.lblUserID);
-            this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.lblUserEmail);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblUserName);
-            this.Controls.Add(this.label1);
-            this.Name = "Home";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Home";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Home_FormClosing);
-            this.Load += new System.EventHandler(this.Home_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            ClientSize = new Size(674, 443);
+            Controls.Add(categoriesMgmt);
+            Controls.Add(serviceMgmt);
+            Controls.Add(monRptBtn);
+            Controls.Add(label5);
+            Controls.Add(lblRole);
+            Controls.Add(label4);
+            Controls.Add(lblUserID);
+            Controls.Add(btnLogout);
+            Controls.Add(label3);
+            Controls.Add(lblUserEmail);
+            Controls.Add(label2);
+            Controls.Add(lblUserName);
+            Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "Home";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Home";
+            FormClosing += Home_FormClosing;
+            Load += Home_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -176,5 +222,8 @@ namespace ProjectFormApp
         private System.Windows.Forms.Label lblUserID;
         private Label label5;
         private Label lblRole;
+        private Button monRptBtn;
+        private Button serviceMgmt;
+        private Button categoriesMgmt;
     }
 }

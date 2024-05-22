@@ -41,8 +41,6 @@ namespace ProjectFormApp
                 Home home = new Home();
                 this.Hide();
                 home.Show();
-                CategoriesMgmt c = new CategoriesMgmt();
-                c.Show();
             }
             else
             {
