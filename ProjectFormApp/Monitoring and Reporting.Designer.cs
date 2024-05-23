@@ -33,26 +33,26 @@
             panel1 = new Panel();
             pictureBox1 = new PictureBox();
             Username_lbl = new Label();
+            groupBox2 = new GroupBox();
+            categoriesMgmt = new Button();
+            serviceMgmt = new Button();
             label2 = new Label();
-            panel2 = new Panel();
-            Overdue_Reqest_lbl = new Label();
-            Pending_Request_lbl = new Label();
-            Completed_Request_lbl = new Label();
-            label1 = new Label();
+            groupBox1 = new GroupBox();
             flowLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel2.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.BackColor = SystemColors.ControlDarkDark;
             flowLayoutPanel1.Controls.Add(panel1);
+            flowLayoutPanel1.Controls.Add(groupBox2);
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(186, 450);
+            flowLayoutPanel1.Size = new Size(213, 486);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // panel1
@@ -63,7 +63,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(186, 144);
+            panel1.Size = new Size(186, 136);
             panel1.TabIndex = 0;
             // 
             // pictureBox1
@@ -81,82 +81,82 @@
             // 
             Username_lbl.AutoSize = true;
             Username_lbl.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            Username_lbl.ForeColor = Color.Black;
-            Username_lbl.Location = new Point(35, 94);
+            Username_lbl.ForeColor = Color.White;
+            Username_lbl.Location = new Point(32, 94);
             Username_lbl.Name = "Username_lbl";
             Username_lbl.Size = new Size(106, 28);
             Username_lbl.TabIndex = 0;
             Username_lbl.Text = "Username";
             Username_lbl.Click += Username_lbl_Click;
             // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(categoriesMgmt);
+            groupBox2.Controls.Add(serviceMgmt);
+            groupBox2.ForeColor = Color.White;
+            groupBox2.Location = new Point(3, 145);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(186, 293);
+            groupBox2.TabIndex = 3;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "User Menu";
+            // 
+            // categoriesMgmt
+            // 
+            categoriesMgmt.BackColor = SystemColors.MenuHighlight;
+            categoriesMgmt.FlatStyle = FlatStyle.Flat;
+            categoriesMgmt.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            categoriesMgmt.ForeColor = SystemColors.Control;
+            categoriesMgmt.Location = new Point(6, 84);
+            categoriesMgmt.Name = "categoriesMgmt";
+            categoriesMgmt.Size = new Size(174, 52);
+            categoriesMgmt.TabIndex = 13;
+            categoriesMgmt.Text = "Categories Management";
+            categoriesMgmt.UseVisualStyleBackColor = false;
+            categoriesMgmt.Click += categoriesMgmt_Click;
+            // 
+            // serviceMgmt
+            // 
+            serviceMgmt.BackColor = SystemColors.MenuHighlight;
+            serviceMgmt.FlatStyle = FlatStyle.Flat;
+            serviceMgmt.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            serviceMgmt.ForeColor = SystemColors.Control;
+            serviceMgmt.Location = new Point(6, 26);
+            serviceMgmt.Name = "serviceMgmt";
+            serviceMgmt.Size = new Size(174, 52);
+            serviceMgmt.TabIndex = 12;
+            serviceMgmt.Text = "Services Management";
+            serviceMgmt.UseVisualStyleBackColor = false;
+            serviceMgmt.Click += serviceMgmt_Click;
+            // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 21F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(195, 9);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(219, 9);
             label2.Name = "label2";
-            label2.Size = new Size(199, 47);
+            label2.Size = new Size(456, 47);
             label2.TabIndex = 1;
-            label2.Text = "DashBoard";
+            label2.Text = "Monitoring and Reporting";
             // 
-            // panel2
+            // groupBox1
             // 
-            panel2.Controls.Add(Overdue_Reqest_lbl);
-            panel2.Controls.Add(Pending_Request_lbl);
-            panel2.Controls.Add(Completed_Request_lbl);
-            panel2.Controls.Add(label1);
-            panel2.Location = new Point(195, 76);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(300, 150);
-            panel2.TabIndex = 2;
-            // 
-            // Overdue_Reqest_lbl
-            // 
-            Overdue_Reqest_lbl.AutoSize = true;
-            Overdue_Reqest_lbl.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            Overdue_Reqest_lbl.Location = new Point(28, 94);
-            Overdue_Reqest_lbl.Name = "Overdue_Reqest_lbl";
-            Overdue_Reqest_lbl.Size = new Size(126, 20);
-            Overdue_Reqest_lbl.TabIndex = 3;
-            Overdue_Reqest_lbl.Text = "Overdue Request";
-            // 
-            // Pending_Request_lbl
-            // 
-            Pending_Request_lbl.AutoSize = true;
-            Pending_Request_lbl.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            Pending_Request_lbl.Location = new Point(28, 74);
-            Pending_Request_lbl.Name = "Pending_Request_lbl";
-            Pending_Request_lbl.Size = new Size(127, 20);
-            Pending_Request_lbl.TabIndex = 2;
-            Pending_Request_lbl.Text = "Ongoing Request";
-            // 
-            // Completed_Request_lbl
-            // 
-            Completed_Request_lbl.AutoSize = true;
-            Completed_Request_lbl.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            Completed_Request_lbl.Location = new Point(28, 51);
-            Completed_Request_lbl.Name = "Completed_Request_lbl";
-            Completed_Request_lbl.Size = new Size(161, 23);
-            Completed_Request_lbl.TabIndex = 1;
-            Completed_Request_lbl.Text = "Request Completed";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(28, 24);
-            label1.Name = "label1";
-            label1.Size = new Size(155, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Pending Request";
+            groupBox1.ForeColor = Color.White;
+            groupBox1.Location = new Point(233, 97);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(580, 341);
+            groupBox1.TabIndex = 2;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Dashboard";
             // 
             // Monitoring_and_Reporting
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDark;
-            ClientSize = new Size(800, 450);
-            Controls.Add(panel2);
+            ClientSize = new Size(860, 486);
+            Controls.Add(groupBox1);
             Controls.Add(label2);
             Controls.Add(flowLayoutPanel1);
             Name = "Monitoring_and_Reporting";
@@ -166,8 +166,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            groupBox2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -179,10 +178,9 @@
         private Label Username_lbl;
         private Label label2;
         private PictureBox pictureBox1;
-        private Panel panel2;
-        private Label Overdue_Reqest_lbl;
-        private Label Pending_Request_lbl;
-        private Label Completed_Request_lbl;
-        private Label label1;
+        private GroupBox groupBox1;
+        private GroupBox groupBox2;
+        private Button serviceMgmt;
+        private Button categoriesMgmt;
     }
 }

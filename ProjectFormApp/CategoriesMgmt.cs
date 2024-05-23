@@ -23,6 +23,12 @@ namespace ProjectFormApp
         private void CategoriesMgmt_Load(object sender, EventArgs e)
         {
             RefreshGrid();
+            if (Global.RoleName != "Manager" && Global.RoleName != "Admin")
+            {
+                btnAdd.Visible = false;
+                btnDelete.Visible = false;
+                btnEdit.Visible = false;
+            }
         }
 
         private void dashboardBtn_Click(object sender, EventArgs e)

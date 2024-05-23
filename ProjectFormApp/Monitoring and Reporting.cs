@@ -41,5 +41,17 @@ namespace ProjectFormApp
         {
             Username_lbl.Text = Global.User.UserName;
         }
+
+        private void serviceMgmt_Click(object sender, EventArgs e)
+        {
+            ServicesMgmt sm = new ServicesMgmt();
+            sm.ShowDialog();
+        }
+
+        private void categoriesMgmt_Click(object sender, EventArgs e)
+        {
+            CategoriesMgmt cm = new CategoriesMgmt();
+            cm.ShowDialog();
+        }
     }
 }
