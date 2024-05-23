@@ -38,10 +38,17 @@
             serviceMgmt = new Button();
             label2 = new Label();
             groupBox1 = new GroupBox();
+            label4 = new Label();
+            label3 = new Label();
+            label1 = new Label();
+            noOfOverdueRequests = new Label();
+            pendingRequest = new Label();
+            numberOFRequests = new Label();
             flowLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox2.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -90,7 +97,6 @@
             Username_lbl.Size = new Size(87, 21);
             Username_lbl.TabIndex = 0;
             Username_lbl.Text = "Username";
-            Username_lbl.Click += Username_lbl_Click;
             // 
             // groupBox2
             // 
@@ -104,7 +110,7 @@
             groupBox2.Size = new Size(163, 220);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
-            groupBox2.Text = "User Menu";
+            groupBox2.Text = "Admins/Managers Menu";
             // 
             // categoriesMgmt
             // 
@@ -149,6 +155,12 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(noOfOverdueRequests);
+            groupBox1.Controls.Add(pendingRequest);
+            groupBox1.Controls.Add(numberOFRequests);
             groupBox1.ForeColor = Color.White;
             groupBox1.Location = new Point(204, 73);
             groupBox1.Margin = new Padding(3, 2, 3, 2);
@@ -157,7 +169,67 @@
             groupBox1.Size = new Size(508, 256);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Dashboard";
+            groupBox1.Text = "Category Dashboard";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(256, 163);
+            label4.Name = "label4";
+            label4.Size = new Size(23, 25);
+            label4.TabIndex = 5;
+            label4.Text = "0";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(356, 69);
+            label3.Name = "label3";
+            label3.Size = new Size(23, 25);
+            label3.TabIndex = 4;
+            label3.Text = "0";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(109, 69);
+            label1.Name = "label1";
+            label1.Size = new Size(23, 25);
+            label1.TabIndex = 3;
+            label1.Text = "0";
+            // 
+            // noOfOverdueRequests
+            // 
+            noOfOverdueRequests.AutoSize = true;
+            noOfOverdueRequests.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            noOfOverdueRequests.Location = new Point(130, 128);
+            noOfOverdueRequests.Name = "noOfOverdueRequests";
+            noOfOverdueRequests.Size = new Size(275, 25);
+            noOfOverdueRequests.TabIndex = 2;
+            noOfOverdueRequests.Text = "Number of Overdue Requests";
+            // 
+            // pendingRequest
+            // 
+            pendingRequest.AutoSize = true;
+            pendingRequest.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            pendingRequest.Location = new Point(288, 35);
+            pendingRequest.Name = "pendingRequest";
+            pendingRequest.Size = new Size(170, 25);
+            pendingRequest.TabIndex = 1;
+            pendingRequest.Text = "Pending Requests";
+            // 
+            // numberOFRequests
+            // 
+            numberOFRequests.AutoSize = true;
+            numberOFRequests.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            numberOFRequests.Location = new Point(23, 35);
+            numberOFRequests.Name = "numberOFRequests";
+            numberOFRequests.Size = new Size(194, 25);
+            numberOFRequests.TabIndex = 0;
+            numberOFRequests.Text = "Number of Requests";
             // 
             // Monitoring_and_Reporting
             // 
@@ -177,6 +249,8 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             groupBox2.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -192,5 +266,11 @@
         private GroupBox groupBox2;
         private Button serviceMgmt;
         private Button categoriesMgmt;
+        private Label numberOFRequests;
+        private Label noOfOverdueRequests;
+        private Label pendingRequest;
+        private Label label4;
+        private Label label3;
+        private Label label1;
     }
 }
