@@ -13,7 +13,7 @@ namespace ProjectWebApp
     {
         private readonly HSMSContext _context;
 
-        public CategoriesController()
+        public CategoriesController(HSMSContext context)
         {
             _context = new HSMSContext();
         }
@@ -21,8 +21,8 @@ namespace ProjectWebApp
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-            var projectIdentityDBContext = _context.Categories.Include(c => c.Manager);
-            return View(await projectIdentityDBContext.ToListAsync());
+            var hSMSContext = _context.Categories.Include(c => c.Manager);
+            return View(await hSMSContext.ToListAsync());
         }
 
         // GET: Categories/Details/5
@@ -47,7 +47,7 @@ namespace ProjectWebApp
         // GET: Categories/Create
         public IActionResult Create()
         {
-            ViewData["ManagerId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["ManagerId"] = new SelectList(_context.Users, "UserId", "Email");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace ProjectWebApp
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ManagerId"] = new SelectList(_context.Users, "Id", "Id", category.ManagerId);
+            ViewData["ManagerId"] = new SelectList(_context.Users, "UserId", "Email", category.ManagerId);
             return View(category);
         }
 
@@ -81,7 +81,7 @@ namespace ProjectWebApp
             {
                 return NotFound();
             }
-            ViewData["ManagerId"] = new SelectList(_context.Users, "Id", "Id", category.ManagerId);
+            ViewData["ManagerId"] = new SelectList(_context.Users, "UserId", "Email", category.ManagerId);
             return View(category);
         }
 
@@ -117,7 +117,7 @@ namespace ProjectWebApp
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ManagerId"] = new SelectList(_context.Users, "Id", "Id", category.ManagerId);
+            ViewData["ManagerId"] = new SelectList(_context.Users, "UserId", "Email", category.ManagerId);
             return View(category);
         }
 
@@ -147,7 +147,7 @@ namespace ProjectWebApp
         {
             if (_context.Categories == null)
             {
-                return Problem("Entity set 'ProjectIdentityDBContext.Categories'  is null.");
+                return Problem("Entity set 'HSMSContext.Categories'  is null.");
             }
             var category = await _context.Categories.FindAsync(id);
             if (category != null)
