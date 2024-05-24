@@ -16,7 +16,7 @@ namespace HSMSBusinessObjects
         public TimeSpan Time { get; set; }
         public int UserId { get; set; }
 
-        public virtual User User { get; set; } = null!;
+        public virtual AppUser User { get; set; } = null!;
         public virtual ICollection<ServiceRequest> ServiceRequests { get; set; }
     }
 }

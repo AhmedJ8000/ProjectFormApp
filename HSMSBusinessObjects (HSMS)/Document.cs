@@ -12,6 +12,6 @@ namespace HSMSBusinessObjects
         public string DocumentType { get; set; } = null!;
         public string DataPath { get; set; } = null!;
 
-        public virtual User User { get; set; } = null!;
+        public virtual AppUser User { get; set; } = null!;
     }
 }
