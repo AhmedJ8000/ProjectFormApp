@@ -37,7 +37,7 @@ namespace ProjectFormApp
         private void frmOrdersDialogueAdd_Load(object sender, EventArgs e)
         {
             
-            ddlManager.DataSource = context.Users.ToList();
+            ddlManager.DataSource = context.AppUsers.ToList();
             ddlManager.DisplayMember = "Name";
             ddlManager.ValueMember = "UserId";
             ddlManager.SelectedItem = null;
@@ -71,7 +71,7 @@ namespace ProjectFormApp
                 {
                     return;
                 }
-                category.Manager = context.Users.Where(x => x.UserId == category.ManagerId).FirstOrDefault();
+                category.Manager = context.AppUsers.Where(x => x.UserId == category.ManagerId).FirstOrDefault();
 
                 if(category.CategoryId > 0)
                 {
