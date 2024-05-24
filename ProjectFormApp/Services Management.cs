@@ -27,6 +27,12 @@ namespace ProjectFormApp
             ddlCategory.ValueMember = "CategoryId";
             ddlCategory.SelectedItem = null;
             RefreshGrid();
+            if (Global.RoleName != "Manager" && Global.RoleName != "Admin")
+            {
+                addSvcBtn.Visible = false;
+                deleteSvcBtn.Visible = false;
+                editSvcBtn.Visible = false;
+            }
         }
         private void RefreshGrid()
         {

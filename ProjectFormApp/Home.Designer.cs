@@ -40,8 +40,6 @@ namespace ProjectFormApp
             label5 = new Label();
             lblRole = new Label();
             monRptBtn = new Button();
-            serviceMgmt = new Button();
-            categoriesMgmt = new Button();
             SuspendLayout();
             // 
             // label1
@@ -147,7 +145,7 @@ namespace ProjectFormApp
             monRptBtn.BackColor = SystemColors.ActiveCaption;
             monRptBtn.FlatStyle = FlatStyle.Flat;
             monRptBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            monRptBtn.Location = new Point(12, 238);
+            monRptBtn.Location = new Point(215, 270);
             monRptBtn.Name = "monRptBtn";
             monRptBtn.Size = new Size(216, 29);
             monRptBtn.TabIndex = 10;
@@ -155,40 +153,12 @@ namespace ProjectFormApp
             monRptBtn.UseVisualStyleBackColor = false;
             monRptBtn.Click += monRptBtn_Click;
             // 
-            // serviceMgmt
-            // 
-            serviceMgmt.BackColor = SystemColors.ActiveCaption;
-            serviceMgmt.FlatStyle = FlatStyle.Flat;
-            serviceMgmt.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            serviceMgmt.Location = new Point(12, 273);
-            serviceMgmt.Name = "serviceMgmt";
-            serviceMgmt.Size = new Size(216, 29);
-            serviceMgmt.TabIndex = 11;
-            serviceMgmt.Text = "Services Management";
-            serviceMgmt.UseVisualStyleBackColor = false;
-            serviceMgmt.Click += serviceMgmt_Click;
-            // 
-            // categoriesMgmt
-            // 
-            categoriesMgmt.BackColor = SystemColors.ActiveCaption;
-            categoriesMgmt.FlatStyle = FlatStyle.Flat;
-            categoriesMgmt.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            categoriesMgmt.Location = new Point(12, 308);
-            categoriesMgmt.Name = "categoriesMgmt";
-            categoriesMgmt.Size = new Size(216, 29);
-            categoriesMgmt.TabIndex = 12;
-            categoriesMgmt.Text = "Categories Management";
-            categoriesMgmt.UseVisualStyleBackColor = false;
-            categoriesMgmt.Click += categoriesMgmt_Click;
-            // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(674, 443);
-            Controls.Add(categoriesMgmt);
-            Controls.Add(serviceMgmt);
             Controls.Add(monRptBtn);
             Controls.Add(label5);
             Controls.Add(lblRole);
@@ -223,7 +193,5 @@ namespace ProjectFormApp
         private Label label5;
         private Label lblRole;
         private Button monRptBtn;
-        private Button serviceMgmt;
-        private Button categoriesMgmt;
     }
 }

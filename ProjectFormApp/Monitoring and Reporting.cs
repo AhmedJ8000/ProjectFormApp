@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HSMSBusinessObjects;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,36 +11,31 @@ using System.Windows.Forms;
 
 namespace ProjectFormApp
 {
+
     public partial class Monitoring_and_Reporting : Form
     {
+        ProjectIdentityDBContext context;
         public Monitoring_and_Reporting()
         {
             InitializeComponent();
-        }
-
-        private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel2_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Username_lbl_Click(object sender, EventArgs e)
-        {
-
+            context = new ProjectIdentityDBContext();
         }
 
         private void Monitoring_and_Reporting_Load(object sender, EventArgs e)
         {
             Username_lbl.Text = Global.User.UserName;
+        }
+
+        private void serviceMgmt_Click(object sender, EventArgs e)
+        {
+            ServicesMgmt sm = new ServicesMgmt();
+            sm.ShowDialog();
+        }
+
+        private void categoriesMgmt_Click(object sender, EventArgs e)
+        {
+            CategoriesMgmt cm = new CategoriesMgmt();
+            cm.ShowDialog();
         }
     }
 }

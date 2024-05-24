@@ -10,8 +10,8 @@ namespace HSMSBusinessObjects
         public DateTime DateNeeded { get; set; }
         public double Price { get; set; }
         public int? CommentId { get; set; }
-        public bool isPending { get; set; }
 
         public virtual Comment? Comment { get; set; }
+        public virtual Service IdNavigation { get; set; } = null!;
     }
 }
