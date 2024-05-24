@@ -12,6 +12,6 @@ namespace ProjectWebApp.ViewModel
         public Category category { get; set; }
 
         public IEnumerable<Category> Categories { get; set; }
-        public IEnumerable<User> Users { get; set; }
+        public IEnumerable<AppUser> Users { get; set; }
     }
 }
