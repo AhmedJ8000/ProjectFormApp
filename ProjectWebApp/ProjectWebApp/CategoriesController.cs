@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HSMSBusinessObjects;
+using ProjectWebApp.ViewModel;
 
 namespace ProjectWebApp
 {
@@ -13,113 +14,111 @@ namespace ProjectWebApp
     {
         private readonly HSMSContext _context;
 
-        public CategoriesController(HSMSContext context)
+        public CategoriesController()
         {
             _context = new HSMSContext();
         }
 
-        // GET: Categories
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string SearchString)
         {
-            var hSMSContext = _context.Categories.Include(c => c.Manager);
-            return View(await hSMSContext.ToListAsync());
-        }
+            IEnumerable<Category> categoryList;
 
-        // GET: Categories/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Categories == null)
+            categoryList = _context.Categories.Include(x => x.Manager);
+
+            if (!String.IsNullOrEmpty(SearchString))
             {
-                return NotFound();
+                categoryList = categoryList.Where(x => x.CategoryName.Contains(SearchString));
             }
 
-            var category = await _context.Categories
-                .Include(c => c.Manager)
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
-            if (category == null)
+            var categoryVM = new NewCategoryViewModel
             {
-                return NotFound();
-            }
+                Categories = categoryList
+            };
 
-            return View(category);
+            return View(categoryVM);
         }
 
-        // GET: Categories/Create
+        // Create Method
         public IActionResult Create()
         {
-            ViewData["ManagerId"] = new SelectList(_context.Users, "UserId", "Email");
-            return View();
+            var viewModel = new NewCategoryViewModel
+            {
+                category = new Category(),
+                Categories = _context.Categories,
+                Users = _context.Users
+            };
+            return View(viewModel);
         }
 
-        // POST: Categories/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,CategoryName,Description,ManagerId")] Category category)
+        public IActionResult Create(NewCategoryViewModel newCat)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(category);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["ManagerId"] = new SelectList(_context.Users, "UserId", "Email", category.ManagerId);
-            return View(category);
-        }
-
-        // GET: Categories/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Categories == null)
-            {
-                return NotFound();
-            }
-
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-            ViewData["ManagerId"] = new SelectList(_context.Users, "UserId", "Email", category.ManagerId);
-            return View(category);
-        }
-
-        // POST: Categories/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryName,Description,ManagerId")] Category category)
-        {
-            if (id != category.CategoryId)
-            {
-                return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(category);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CategoryExists(category.CategoryId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Categories.Add(newCat.category);
+                _context.SaveChanges();
+                TempData["CreateSuccess"] = "Category Added Successfully";
+                return RedirectToAction("Index");
             }
-            ViewData["ManagerId"] = new SelectList(_context.Users, "UserId", "Email", category.ManagerId);
-            return View(category);
+            else
+            {
+                var viewModel = new NewCategoryViewModel
+                {
+                    category = newCat.category,
+                    Categories = _context.Categories,
+                    Users = _context.Users.Where(x => x.Role == "Manager")
+                };
+                return View(viewModel);
+            }
         }
+
+        // Edit Method
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+                return NotFound();
+
+            var catgoryFromDB = _context.Categories.Find(id);
+
+            if (catgoryFromDB == null)
+                NotFound();
+
+            var viewModel = new NewCategoryViewModel
+            {
+                category = catgoryFromDB,
+                Categories = _context.Categories,
+                Users = _context.Users.Where(x => x.Role == "Manager")
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(NewCategoryViewModel editCat)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Categories.Update(editCat.category);
+                _context.SaveChanges();
+                TempData["CreateSuccess"] = "Category Updated Successfully";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                var viewModel = new NewCategoryViewModel
+                {
+                    category = editCat.category,
+                    Categories = _context.Categories,
+                    Users = _context.Users.Where(x => x.Role == "Manager")
+                };
+                return View(viewModel);
+            }
+        }
+
+        // Delete Methods
 
         // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(int? id)
