@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace HSMSBusinessObjects
 {
-    public partial class User
+    public partial class AppUser
     {
-        public User()
+        public AppUser()
         {
             Categories = new HashSet<Category>();
             Comments = new HashSet<Comment>();
@@ -18,7 +18,6 @@ namespace HSMSBusinessObjects
         public string? NormalizedName { get; set; }
         public string Email { get; set; } = null!;
         public string? NormalizedEmail { get; set; }
-        public string? Role { get; set; }
         public bool EmailConfirmed { get; set; }
         public string? PasswordHash { get; set; }
         public string? SecurityStamp { get; set; }

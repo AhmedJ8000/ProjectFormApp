@@ -16,6 +16,7 @@ namespace HSMSBusinessObjects
         {
         }
 
+        public virtual DbSet<AppUser> AppUsers { get; set; } = null!;
         public virtual DbSet<Category> Categories { get; set; } = null!;
         public virtual DbSet<Comment> Comments { get; set; } = null!;
         public virtual DbSet<Document> Documents { get; set; } = null!;
@@ -23,7 +24,6 @@ namespace HSMSBusinessObjects
         public virtual DbSet<Notification> Notifications { get; set; } = null!;
         public virtual DbSet<Service> Services { get; set; } = null!;
         public virtual DbSet<ServiceRequest> ServiceRequests { get; set; } = null!;
-        public virtual DbSet<User> Users { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -36,6 +36,28 @@ namespace HSMSBusinessObjects
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<AppUser>(entity =>
+            {
+                entity.HasKey(e => e.UserId)
+                    .HasName("PK_User");
+
+                entity.ToTable("AppUser");
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NormalizedEmail).HasMaxLength(255);
+
+                entity.Property(e => e.NormalizedName).HasMaxLength(255);
+            });
+
             modelBuilder.Entity<Category>(entity =>
             {
                 entity.ToTable("Category");
@@ -212,29 +234,6 @@ namespace HSMSBusinessObjects
                     .HasForeignKey<ServiceRequest>(d => d.Id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Service_Request_Service");
-            });
-
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.ToTable("User");
-
-                entity.Property(e => e.UserId).HasColumnName("UserID");
-
-                entity.Property(e => e.Email)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Name)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.NormalizedEmail).HasMaxLength(255);
-
-                entity.Property(e => e.NormalizedName).HasMaxLength(255);
-
-                entity.Property(e => e.Role)
-                    .HasMaxLength(15)
-                    .IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);
