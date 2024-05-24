@@ -8,7 +8,7 @@ namespace HSMSBusinessObjects
         public int LogId { get; set; }
         public string Source { get; set; } = null!;
         public string Type { get; set; } = null!;
-        public int UserId { get; set; }
+        public string UserId { get; set; } = null!;
         public DateTime Date { get; set; }
         public TimeSpan Time { get; set; }
         public string? Message { get; set; }
