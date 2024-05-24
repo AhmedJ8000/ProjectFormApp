@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HSMSBusinessObjects - Copy\HSMSBusinessObjects\HSMSBusinessObjects.csproj" />
+    <ProjectReference Include="..\HSMSBusinessObjects (HSMS)\HSMSBusinessObjects.csproj" />
   </ItemGroup>
 
 </Project>

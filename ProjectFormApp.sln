@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectFormApp", "ProjectFormApp\ProjectFormApp.csproj", "{B7440859-D933-4D4E-AB02-6777593AD3D0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HSMSBusinessObjects", "HSMSBusinessObjects - Copy\HSMSBusinessObjects\HSMSBusinessObjects.csproj", "{F310F589-D177-4669-A6B1-307042182700}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HSMSBusinessObjects", "HSMSBusinessObjects (HSMS)\HSMSBusinessObjects.csproj", "{EB397B97-2F9D-4773-B999-EEA4F179FACC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{B7440859-D933-4D4E-AB02-6777593AD3D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7440859-D933-4D4E-AB02-6777593AD3D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7440859-D933-4D4E-AB02-6777593AD3D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F310F589-D177-4669-A6B1-307042182700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F310F589-D177-4669-A6B1-307042182700}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F310F589-D177-4669-A6B1-307042182700}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F310F589-D177-4669-A6B1-307042182700}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB397B97-2F9D-4773-B999-EEA4F179FACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB397B97-2F9D-4773-B999-EEA4F179FACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB397B97-2F9D-4773-B999-EEA4F179FACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB397B97-2F9D-4773-B999-EEA4F179FACC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
