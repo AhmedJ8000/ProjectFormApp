@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 namespace HSMSBusinessObjects
 {
     public partial class HSMSContext : DbContext
-    {
+    {//
         public HSMSContext()
         {
         }
