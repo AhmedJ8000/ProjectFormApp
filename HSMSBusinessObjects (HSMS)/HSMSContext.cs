@@ -38,24 +38,15 @@ namespace HSMSBusinessObjects
         {
             modelBuilder.Entity<AppUser>(entity =>
             {
-                entity.HasKey(e => e.UserId)
-                    .HasName("PK_User");
-
                 entity.ToTable("AppUser");
 
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+                entity.Property(e => e.Email).HasMaxLength(256);
 
-                entity.Property(e => e.Email)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
 
-                entity.Property(e => e.Name)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
 
-                entity.Property(e => e.NormalizedEmail).HasMaxLength(255);
-
-                entity.Property(e => e.NormalizedName).HasMaxLength(255);
+                entity.Property(e => e.UserName).HasMaxLength(256);
             });
 
             modelBuilder.Entity<Category>(entity =>
@@ -72,13 +63,15 @@ namespace HSMSBusinessObjects
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ManagerId).HasColumnName("ManagerID");
+                entity.Property(e => e.ManagerId)
+                    .HasMaxLength(450)
+                    .HasColumnName("ManagerID");
 
                 entity.HasOne(d => d.Manager)
                     .WithMany(p => p.Categories)
                     .HasForeignKey(d => d.ManagerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Category_User");
+                    .HasConstraintName("FK_Category_AppUser");
             });
 
             modelBuilder.Entity<Comment>(entity =>
@@ -95,13 +88,15 @@ namespace HSMSBusinessObjects
 
                 entity.Property(e => e.Time).HasColumnType("time(0)");
 
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(450)
+                    .HasColumnName("UserID");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Comment_User");
+                    .HasConstraintName("FK_Comment_AppUser");
             });
 
             modelBuilder.Entity<Document>(entity =>
@@ -124,13 +119,15 @@ namespace HSMSBusinessObjects
 
                 entity.Property(e => e.UploadDate).HasColumnType("date");
 
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(450)
+                    .HasColumnName("UserID");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Documents)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Document_User");
+                    .HasConstraintName("FK_Document_AppUser");
             });
 
             modelBuilder.Entity<Log>(entity =>
@@ -163,13 +160,15 @@ namespace HSMSBusinessObjects
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(450)
+                    .HasColumnName("UserID");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Logs)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Log_User");
+                    .HasConstraintName("FK_Log_AppUser");
             });
 
             modelBuilder.Entity<Notification>(entity =>
@@ -206,6 +205,12 @@ namespace HSMSBusinessObjects
                 entity.Property(e => e.ServiceName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.Category)
+                    .WithMany(p => p.Services)
+                    .HasForeignKey(d => d.CategoryId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Service_Category");
             });
 
             modelBuilder.Entity<ServiceRequest>(entity =>

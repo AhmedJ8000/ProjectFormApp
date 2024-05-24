@@ -38,8 +38,8 @@ namespace ProjectFormApp
         {
             
             ddlManager.DataSource = context.AppUsers.ToList();
-            ddlManager.DisplayMember = "Name";
-            ddlManager.ValueMember = "UserId";
+            ddlManager.DisplayMember = "UserName";
+            ddlManager.ValueMember = "Id";
             ddlManager.SelectedItem = null;
 
             if(category.CategoryId > 0)
@@ -65,13 +65,13 @@ namespace ProjectFormApp
 
                 if(ddlManager.SelectedItem != null)
                 {
-                    category.ManagerId = Convert.ToInt32(ddlManager.SelectedValue.ToString());
+                    category.ManagerId = ddlManager.SelectedValue.ToString();
                 }
                 else
                 {
                     return;
                 }
-                category.Manager = context.AppUsers.Where(x => x.UserId == category.ManagerId).FirstOrDefault();
+                category.Manager = context.AppUsers.Where(x => x.Id == category.ManagerId).FirstOrDefault();
 
                 if(category.CategoryId > 0)
                 {

@@ -56,7 +56,7 @@ namespace ProjectFormApp
                         OrderID = o.CategoryId,
                         CategoryName = o.CategoryName,
                         Description = o.Description,
-                        ManagerName = o.Manager.Name
+                        ManagerName = o.Manager.UserName
                     }).ToList();
             }
             catch (Exception ex)
