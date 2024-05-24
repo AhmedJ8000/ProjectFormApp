@@ -13,11 +13,11 @@ namespace ProjectFormApp
 {
     public partial class ServicesMgmt : Form
     {
-        ProjectIdentityDBContext context;
+        HSMSContext context;
         public ServicesMgmt()
         {
             InitializeComponent();
-            context = new ProjectIdentityDBContext();
+            context = new HSMSContext();
         }
 
         private void ServicesMgmt_Load(object sender, EventArgs e)
