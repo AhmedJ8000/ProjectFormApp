@@ -13,11 +13,11 @@ namespace ProjectFormApp
 {
     public partial class CategoriesMgmt : Form
     {
-        ProjectIdentityDBContext context;
+        HSMSContext context;
         public CategoriesMgmt()
         {
             InitializeComponent();
-            context = new ProjectIdentityDBContext();
+            context = new HSMSContext();
         }
 
         private void CategoriesMgmt_Load(object sender, EventArgs e)
@@ -56,7 +56,7 @@ namespace ProjectFormApp
                         OrderID = o.CategoryId,
                         CategoryName = o.CategoryName,
                         Description = o.Description,
-                        ManagerName = o.Manager.UserName
+                        ManagerName = o.Manager.Name
                     }).ToList();
             }
             catch (Exception ex)

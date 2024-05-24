@@ -13,13 +13,13 @@ namespace ProjectFormApp
 {
     public partial class frmServicesDialogueAdd : Form
     {
-        ProjectIdentityDBContext context;
+        HSMSContext context;
         Service service;
         public frmServicesDialogueAdd()
         {
             InitializeComponent();
 
-            context = new ProjectIdentityDBContext();
+            context = new HSMSContext();
 
             service = new Service();
         }
@@ -28,7 +28,7 @@ namespace ProjectFormApp
         {
             InitializeComponent();
 
-            context = new ProjectIdentityDBContext();
+            context = new HSMSContext();
 
             service = s;
         }

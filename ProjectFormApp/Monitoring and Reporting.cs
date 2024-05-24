@@ -14,11 +14,11 @@ namespace ProjectFormApp
 
     public partial class Monitoring_and_Reporting : Form
     {
-        ProjectIdentityDBContext context;
+        HSMSContext context;
         public Monitoring_and_Reporting()
         {
             InitializeComponent();
-            context = new ProjectIdentityDBContext();
+            context = new HSMSContext();
         }
 
         private void Monitoring_and_Reporting_Load(object sender, EventArgs e)

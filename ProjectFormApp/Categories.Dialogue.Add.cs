@@ -13,14 +13,14 @@ namespace ProjectFormApp
 {
     public partial class frmCategoriesDialogueAdd : Form
     {
-        ProjectIdentityDBContext context;
+        HSMSContext context;
         Category category;
 
         public frmCategoriesDialogueAdd()
         {
             InitializeComponent();
 
-            context = new ProjectIdentityDBContext();
+            context = new HSMSContext();
 
             category = new Category();
         }
@@ -29,7 +29,7 @@ namespace ProjectFormApp
         {
             InitializeComponent();
 
-            context = new ProjectIdentityDBContext();
+            context = new HSMSContext();
 
             category = c;
         }
@@ -37,9 +37,9 @@ namespace ProjectFormApp
         private void frmOrdersDialogueAdd_Load(object sender, EventArgs e)
         {
             
-            ddlManager.DataSource = context.AspNetUsers.ToList();
-            ddlManager.DisplayMember = "UserName";
-            ddlManager.ValueMember = "ID";
+            ddlManager.DataSource = context.Users.ToList();
+            ddlManager.DisplayMember = "Name";
+            ddlManager.ValueMember = "UserId";
             ddlManager.SelectedItem = null;
 
             if(category.CategoryId > 0)
@@ -65,13 +65,13 @@ namespace ProjectFormApp
 
                 if(ddlManager.SelectedItem != null)
                 {
-                    category.ManagerId = ddlManager.SelectedValue.ToString();
+                    category.ManagerId = Convert.ToInt32(ddlManager.SelectedValue.ToString());
                 }
                 else
                 {
                     return;
                 }
-                category.Manager = context.AspNetUsers.Where(x => x.Id == category.ManagerId).FirstOrDefault();
+                category.Manager = context.Users.Where(x => x.UserId == category.ManagerId).FirstOrDefault();
 
                 if(category.CategoryId > 0)
                 {
