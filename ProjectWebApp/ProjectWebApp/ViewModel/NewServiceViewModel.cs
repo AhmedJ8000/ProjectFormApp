@@ -3,13 +3,14 @@ using HSMSBusinessObjects;
 
 namespace ProjectWebApp.ViewModel
 {
-    public class NewCategoryViewModel
+    public class NewServiceViewModel
     {
-        public Category category { get; set; }
+        public Service service { get; set; }
 
         public string? SearchString;
+        public string? SearchCategory;
 
         public IEnumerable<Category> Categories { get; set; }
-        public IEnumerable<AppUser> Users { get; set; }
+        public IEnumerable<Service> Services { get; set; }
     }
 }

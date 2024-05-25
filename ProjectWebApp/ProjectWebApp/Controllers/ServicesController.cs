@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HSMSBusinessObjects;
+using ProjectWebApp.ViewModel;
 
 namespace ProjectWebApp.Controllers
 {
@@ -19,10 +20,29 @@ namespace ProjectWebApp.Controllers
         }
 
         // GET: Services
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SearchString, string SearchCategory)
         {
-            var hSMSContext = _context.Services.Include(s => s.Category);
-            return View(await hSMSContext.ToListAsync());
+            IEnumerable<Service> serviceList;
+
+            serviceList = _context.Services.Include(s => s.Category);
+
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                serviceList = serviceList.Where(x => x.ServiceName.Contains(SearchString));
+            }
+
+            if (!string.IsNullOrEmpty(SearchCategory))
+            {
+                serviceList = serviceList.Where(x => x.CategoryId == Convert.ToInt32(SearchCategory));
+            }
+
+            var serviceVM = new NewServiceViewModel
+            {
+                Services = serviceList,
+                Categories = _context.Categories,
+            };
+
+            return View(serviceVM);
         }
 
         // GET: Services/Details/5
