@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HSMSBusinessObjects;
+using ProjectWebApp.ViewModel;
 
 namespace ProjectWebApp.Controllers
 {
@@ -19,9 +20,23 @@ namespace ProjectWebApp.Controllers
         }
 
         // GET: Notifications
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SearchString)
         {
-            return View(await _context.Notifications.ToListAsync());
+            IEnumerable<Notification> notificationList;
+
+            notificationList = _context.Notifications;
+
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                notificationList = notificationList.Where(x => x.NotificationId.ToString().Contains(SearchString));
+            }
+
+            var notificationVM = new NewNotificationViewModel
+            {
+                Notifications = notificationList
+            };
+
+            return View(notificationVM);
         }
 
         // GET: Notifications/Details/5
