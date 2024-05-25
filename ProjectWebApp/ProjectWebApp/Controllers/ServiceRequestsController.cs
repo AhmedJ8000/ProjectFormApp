@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HSMSBusinessObjects;
 using Microsoft.AspNetCore.Authorization;
+using ProjectWebApp.ViewModel;
 
 namespace ProjectWebApp.Controllers
 {
@@ -20,10 +21,23 @@ namespace ProjectWebApp.Controllers
         }
 
         // GET: ServiceRequests
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SearchString)
         {
-            var hSMSContext = _context.ServiceRequests.Include(s => s.Comment).Include(s => s.IdNavigation);
-            return View(await hSMSContext.ToListAsync());
+            IEnumerable<ServiceRequest> serviceRequestList;
+
+            serviceRequestList = _context.ServiceRequests.Include(s => s.Comment).Include(s => s.IdNavigation);
+
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                serviceRequestList = serviceRequestList.Where(x => x.Description.Contains(SearchString));
+            }
+
+            var serviceRequestVM = new NewServiceRequestViewModel
+            {
+                ServiceRequests = serviceRequestList
+            };
+
+            return View(serviceRequestVM);
         }
 
         // GET: ServiceRequests/Details/5
@@ -159,7 +173,8 @@ namespace ProjectWebApp.Controllers
             var serviceRequest = await _context.ServiceRequests.FindAsync(id);
             if (serviceRequest != null)
             {
-                _context.ServiceRequests.Remove(serviceRequest);
+                //_context.ServiceRequests.Remove(serviceRequest);
+                //serviceRequest
             }
 
             await _context.SaveChangesAsync();
