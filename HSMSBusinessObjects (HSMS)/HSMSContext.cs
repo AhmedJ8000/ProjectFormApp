@@ -229,6 +229,12 @@ namespace HSMSBusinessObjects
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
+                entity.Property(e => e.IsPending).HasColumnName("isPending");
+
+                entity.Property(e => e.TechnicianId)
+                    .HasMaxLength(450)
+                    .HasColumnName("TechnicianID");
+
                 entity.HasOne(d => d.Comment)
                     .WithMany(p => p.ServiceRequests)
                     .HasForeignKey(d => d.CommentId)
@@ -239,6 +245,12 @@ namespace HSMSBusinessObjects
                     .HasForeignKey<ServiceRequest>(d => d.Id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Service_Request_Service");
+
+                entity.HasOne(d => d.Technician)
+                    .WithMany(p => p.ServiceRequests)
+                    .HasForeignKey(d => d.TechnicianId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Service_Request_AppUser");
             });
 
             OnModelCreatingPartial(modelBuilder);
