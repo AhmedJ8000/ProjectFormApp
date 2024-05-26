@@ -31,7 +31,7 @@ namespace ProjectWebApp.Controllers
 
         private int GetTotalRequestCount()
         {
-            return 0;
+            //return _context.ServiceRequests;
         }
 
         private int GetPendingRequestCount()
