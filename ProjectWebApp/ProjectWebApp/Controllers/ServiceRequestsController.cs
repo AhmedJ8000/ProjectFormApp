@@ -7,15 +7,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HSMSBusinessObjects;
 
-namespace ProjectWebApp
+namespace ProjectWebApp.Controllers
 {
     public class ServiceRequestsController : Controller
     {
         private readonly HSMSContext _context;
 
-        public ServiceRequestsController(HSMSContext context)
+        public ServiceRequestsController()
         {
-            _context = context;
+            _context = new HSMSContext();
         }
 
         // GET: ServiceRequests
@@ -166,14 +166,14 @@ namespace ProjectWebApp
             {
                 _context.ServiceRequests.Remove(serviceRequest);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ServiceRequestExists(int id)
         {
-          return _context.ServiceRequests.Any(e => e.Id == id);
+            return _context.ServiceRequests.Any(e => e.Id == id);
         }
     }
 }
