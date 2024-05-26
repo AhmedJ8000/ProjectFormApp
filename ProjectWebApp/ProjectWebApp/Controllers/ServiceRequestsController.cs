@@ -25,7 +25,7 @@ namespace ProjectWebApp.Controllers
         {
             IEnumerable<ServiceRequest> serviceRequestList;
 
-            serviceRequestList = _context.ServiceRequests.Include(s => s.Comment).Include(s => s.IdNavigation);
+            serviceRequestList = _context.ServiceRequests.Include(s => s.Comment).Include(s => s.IdNavigation).Include(s => s.Technician);
 
             if (!string.IsNullOrEmpty(SearchString))
             {
