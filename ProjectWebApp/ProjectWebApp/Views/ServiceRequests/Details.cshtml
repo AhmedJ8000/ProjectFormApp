@@ -1,4 +1,4 @@
-﻿@model HSMSBusinessObjects.ServiceRequest
+﻿@model HSMSBusinessObjects.ServiceRequest;
 
 @{
     ViewData["Title"] = "Details";
@@ -11,39 +11,48 @@
     <h4>ServiceRequest</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Description)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.DateNeeded)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DateNeeded)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Price)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Price)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IsPending)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IsPending)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Comment)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Comment.UserId)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.IdNavigation)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.IdNavigation.ServiceName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TechnicianId)
+            @Html.DisplayNameFor(model => model.Technician)
         </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Technician.Id)
+        </dd>
     </dl>
 </div>
 <div>

@@ -66,6 +66,7 @@ namespace ProjectWebApp.Controllers
         {
             ViewData["CommentId"] = new SelectList(_context.Comments, "CommentId", "UserId");
             ViewData["Id"] = new SelectList(_context.Services, "ServiceId", "ServiceName");
+            ViewData["TechnicianId"] = new SelectList(_context.AppUsers, "Id", "Id");
             return View();
         }
 
@@ -74,7 +75,7 @@ namespace ProjectWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Description,DateNeeded,Price,CommentId")] ServiceRequest serviceRequest)
+        public async Task<IActionResult> Create([Bind("Id,Description,DateNeeded,Price,CommentId,TechnicianId,IsPending")] ServiceRequest serviceRequest)
         {
             if (ModelState.IsValid)
             {
@@ -84,6 +85,7 @@ namespace ProjectWebApp.Controllers
             }
             ViewData["CommentId"] = new SelectList(_context.Comments, "CommentId", "UserId", serviceRequest.CommentId);
             ViewData["Id"] = new SelectList(_context.Services, "ServiceId", "ServiceName", serviceRequest.Id);
+            ViewData["TechnicianId"] = new SelectList(_context.AppUsers, "Id", "Id", serviceRequest.TechnicianId);
             return View(serviceRequest);
         }
 
@@ -102,6 +104,7 @@ namespace ProjectWebApp.Controllers
             }
             ViewData["CommentId"] = new SelectList(_context.Comments, "CommentId", "UserId", serviceRequest.CommentId);
             ViewData["Id"] = new SelectList(_context.Services, "ServiceId", "ServiceName", serviceRequest.Id);
+            ViewData["TechnicianId"] = new SelectList(_context.AppUsers, "Id", "Id", serviceRequest.TechnicianId);
             return View(serviceRequest);
         }
 
@@ -110,7 +113,7 @@ namespace ProjectWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Description,DateNeeded,Price,CommentId")] ServiceRequest serviceRequest)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Description,DateNeeded,Price,CommentId,TechnicianId,IsPending")] ServiceRequest serviceRequest)
         {
             if (id != serviceRequest.Id)
             {
@@ -139,6 +142,7 @@ namespace ProjectWebApp.Controllers
             }
             ViewData["CommentId"] = new SelectList(_context.Comments, "CommentId", "UserId", serviceRequest.CommentId);
             ViewData["Id"] = new SelectList(_context.Services, "ServiceId", "ServiceName", serviceRequest.Id);
+            ViewData["TechnicianId"] = new SelectList(_context.AppUsers, "Id", "Id", serviceRequest.TechnicianId);
             return View(serviceRequest);
         }
 
@@ -153,6 +157,7 @@ namespace ProjectWebApp.Controllers
             var serviceRequest = await _context.ServiceRequests
                 .Include(s => s.Comment)
                 .Include(s => s.IdNavigation)
+                .Include(s => s.Technician)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (serviceRequest == null)
             {
@@ -174,8 +179,7 @@ namespace ProjectWebApp.Controllers
             var serviceRequest = await _context.ServiceRequests.FindAsync(id);
             if (serviceRequest != null)
             {
-                //_context.ServiceRequests.Remove(serviceRequest);
-                //serviceRequest
+                _context.ServiceRequests.Remove(serviceRequest);
             }
 
             await _context.SaveChangesAsync();
