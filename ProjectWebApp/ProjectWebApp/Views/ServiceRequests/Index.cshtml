@@ -44,6 +44,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.serviceRequest.IdNavigation.ServiceName)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.serviceRequest.TechnicianId)
+            </th>
             @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("Technician") || User.IsInRole("User"))
             {
                 <th>Action</th>
@@ -68,6 +71,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdNavigation.ServiceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TechnicianId)
             </td>
 
             @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("Technician") || User.IsInRole("User"))

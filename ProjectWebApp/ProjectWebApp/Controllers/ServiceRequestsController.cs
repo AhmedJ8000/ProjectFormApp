@@ -51,6 +51,7 @@ namespace ProjectWebApp.Controllers
             var serviceRequest = await _context.ServiceRequests
                 .Include(s => s.Comment)
                 .Include(s => s.IdNavigation)
+                .Include(s => s.Technician)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (serviceRequest == null)
             {
