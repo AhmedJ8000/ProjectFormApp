@@ -13,11 +13,11 @@ namespace ProjectWebApp.Controllers
             _context = new HSMSContext();
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int? catId)
         {
-            var totalRequests = GetTotalRequestCount();
-            var pendingRequests = GetPendingRequestCount();
-            var overdueRequests = GetOverdueRequestCount();
+            var totalRequests = GetTotalRequestCount(catId);
+            var pendingRequests = GetPendingRequestCount(catId);
+            var overdueRequests = GetOverdueRequestCount(catId);
 
             var viewModel = new RequestMonitoringViewModel
             {
@@ -29,17 +29,17 @@ namespace ProjectWebApp.Controllers
             return View(viewModel);
         }
 
-        private int GetTotalRequestCount()
+        private int GetTotalRequestCount(int? catId)
         {
-            //return _context.ServiceRequests;
+            return _context.ServiceRequests.Where(x => x.IdNavigation.CategoryId == catId).Count();
         }
 
-        private int GetPendingRequestCount()
+        private int GetPendingRequestCount(int? catId)
         {
             return 0;
         }
 
-        private int GetOverdueRequestCount()
+        private int GetOverdueRequestCount(int? catId)
         {
             return 0;
         }
