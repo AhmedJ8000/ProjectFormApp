@@ -38,9 +38,9 @@ namespace ProjectFormApp
             if(signInResults == true) //if user is verified
             {
                 //do something.. i.e. navigate to next forms
-                Home home = new Home();
+                Monitoring_and_Reporting mar = new Monitoring_and_Reporting();
                 this.Hide();
-                home.Show();
+                mar.Show();
             }
             else
             {
