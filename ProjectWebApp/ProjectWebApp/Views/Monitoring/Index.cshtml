@@ -12,6 +12,11 @@
     <li>Overdue Requests: @Model.OverdueRequests</li>
 </ul>
 
+@using (Html.BeginForm("Index", "Categories", FormMethod.Post))
+{
+    <button type="submit">Back to Index</button>
+}
+
 <style>
     li {
         margin-bottom: 10px;

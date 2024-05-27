@@ -15,6 +15,7 @@ namespace ProjectWebApp.Controllers
 
         public IActionResult Index(int? catId)
         {
+            catId = 11;
             var totalRequests = GetTotalRequestCount(catId);
             var pendingRequests = GetPendingRequestCount(catId);
             var overdueRequests = GetOverdueRequestCount(catId);
@@ -36,12 +37,13 @@ namespace ProjectWebApp.Controllers
 
         private int GetPendingRequestCount(int? catId)
         {
-            return 0;
+            return _context.ServiceRequests.Where(x => x.IdNavigation.CategoryId == catId && x.IsPending == true).Count();
         }
 
         private int GetOverdueRequestCount(int? catId)
         {
-            return 0;
+            DateTime today = DateTime.Today;
+            return _context.ServiceRequests.Where(x => x.IdNavigation.CategoryId == catId && x.DateNeeded < today).Count();
         }
     }
 }
