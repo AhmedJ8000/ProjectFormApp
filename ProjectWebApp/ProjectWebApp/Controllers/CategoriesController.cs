@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HSMSBusinessObjects;
 using ProjectWebApp.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProjectWebApp.Controllers
 {
@@ -40,6 +41,7 @@ namespace ProjectWebApp.Controllers
         }
 
         // GET: Categories/Details/5
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Categories == null)
@@ -59,6 +61,7 @@ namespace ProjectWebApp.Controllers
         }
 
         // GET: Categories/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["ManagerId"] = new SelectList(_context.AppUsers, "Id", "Id");
@@ -70,6 +73,7 @@ namespace ProjectWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("CategoryId,CategoryName,Description,ManagerId")] Category category)
         {
             if (ModelState.IsValid)
@@ -83,6 +87,7 @@ namespace ProjectWebApp.Controllers
         }
 
         // GET: Categories/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Categories == null)
@@ -104,6 +109,7 @@ namespace ProjectWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryName,Description,ManagerId")] Category category)
         {
             if (id != category.CategoryId)
@@ -136,6 +142,7 @@ namespace ProjectWebApp.Controllers
         }
 
         // GET: Categories/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Categories == null)
@@ -157,6 +164,7 @@ namespace ProjectWebApp.Controllers
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Categories == null)

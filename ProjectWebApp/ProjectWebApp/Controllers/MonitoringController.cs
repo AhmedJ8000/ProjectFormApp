@@ -1,4 +1,5 @@
 ﻿using HSMSBusinessObjects;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProjectWebApp.ViewModel;
 
@@ -13,20 +14,23 @@ namespace ProjectWebApp.Controllers
             _context = new HSMSContext();
         }
 
+        [Authorize(Roles ="Admin,Manager")]
         public IActionResult Index(int? catId)
         {
-            catId = 11;
+            string catName = _context.Categories.Where(x => x.CategoryId == catId).FirstOrDefault()?.CategoryName;
+
             var totalRequests = GetTotalRequestCount(catId);
             var pendingRequests = GetPendingRequestCount(catId);
             var overdueRequests = GetOverdueRequestCount(catId);
 
             var viewModel = new RequestMonitoringViewModel
             {
+                CategoryName = catName,
                 TotalRequests = totalRequests,
                 PendingRequests = pendingRequests,
                 OverdueRequests = overdueRequests
             };
-
+            
             return View(viewModel);
         }
 
