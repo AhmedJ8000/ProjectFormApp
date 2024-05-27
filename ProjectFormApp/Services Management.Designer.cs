@@ -30,7 +30,7 @@
         {
             groupBoxAdmin = new GroupBox();
             ddlCategory = new ComboBox();
-            button2 = new Button();
+            filterBtn = new Button();
             lblSearchUsr = new Label();
             resetRefreshBtn = new Button();
             searchUsrTxtInput = new TextBox();
@@ -46,16 +46,14 @@
             // groupBoxAdmin
             // 
             groupBoxAdmin.Controls.Add(ddlCategory);
-            groupBoxAdmin.Controls.Add(button2);
+            groupBoxAdmin.Controls.Add(filterBtn);
             groupBoxAdmin.Controls.Add(lblSearchUsr);
             groupBoxAdmin.Controls.Add(resetRefreshBtn);
             groupBoxAdmin.Controls.Add(searchUsrTxtInput);
             groupBoxAdmin.Controls.Add(label1);
-            groupBoxAdmin.Location = new Point(10, 9);
-            groupBoxAdmin.Margin = new Padding(3, 2, 3, 2);
+            groupBoxAdmin.Location = new Point(11, 12);
             groupBoxAdmin.Name = "groupBoxAdmin";
-            groupBoxAdmin.Padding = new Padding(3, 2, 3, 2);
-            groupBoxAdmin.Size = new Size(779, 67);
+            groupBoxAdmin.Size = new Size(890, 89);
             groupBoxAdmin.TabIndex = 1;
             groupBoxAdmin.TabStop = false;
             groupBoxAdmin.Text = "Filters";
@@ -63,40 +61,43 @@
             // ddlCategory
             // 
             ddlCategory.FormattingEnabled = true;
-            ddlCategory.Location = new Point(363, 26);
+            ddlCategory.Location = new Point(415, 35);
+            ddlCategory.Margin = new Padding(3, 4, 3, 4);
             ddlCategory.Name = "ddlCategory";
-            ddlCategory.Size = new Size(209, 23);
+            ddlCategory.Size = new Size(238, 28);
             ddlCategory.TabIndex = 8;
             // 
-            // button2
+            // filterBtn
             // 
-            button2.BackColor = SystemColors.Highlight;
-            button2.FlatAppearance.BorderColor = Color.Black;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(578, 26);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 7;
-            button2.Text = "Filter";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += filterBtn_Click;
+            filterBtn.BackColor = SystemColors.Highlight;
+            filterBtn.FlatAppearance.BorderColor = Color.Black;
+            filterBtn.FlatStyle = FlatStyle.Flat;
+            filterBtn.ForeColor = Color.White;
+            filterBtn.Location = new Point(661, 35);
+            filterBtn.Margin = new Padding(3, 4, 3, 4);
+            filterBtn.Name = "filterBtn";
+            filterBtn.Size = new Size(86, 31);
+            filterBtn.TabIndex = 7;
+            filterBtn.Text = "Filter";
+            filterBtn.UseVisualStyleBackColor = false;
+            filterBtn.Click += filterBtn_Click;
             // 
             // lblSearchUsr
             // 
             lblSearchUsr.AutoSize = true;
-            lblSearchUsr.Location = new Point(9, 30);
+            lblSearchUsr.Location = new Point(10, 40);
             lblSearchUsr.Name = "lblSearchUsr";
-            lblSearchUsr.Size = new Size(75, 15);
+            lblSearchUsr.Size = new Size(95, 20);
             lblSearchUsr.TabIndex = 1;
             lblSearchUsr.Text = "Search by ID:";
             // 
             // resetRefreshBtn
             // 
             resetRefreshBtn.FlatStyle = FlatStyle.Flat;
-            resetRefreshBtn.Location = new Point(658, 26);
+            resetRefreshBtn.Location = new Point(752, 35);
+            resetRefreshBtn.Margin = new Padding(3, 4, 3, 4);
             resetRefreshBtn.Name = "resetRefreshBtn";
-            resetRefreshBtn.Size = new Size(115, 23);
+            resetRefreshBtn.Size = new Size(131, 31);
             resetRefreshBtn.TabIndex = 6;
             resetRefreshBtn.Text = "Reset / Refresh";
             resetRefreshBtn.UseVisualStyleBackColor = true;
@@ -104,18 +105,17 @@
             // 
             // searchUsrTxtInput
             // 
-            searchUsrTxtInput.Location = new Point(95, 26);
-            searchUsrTxtInput.Margin = new Padding(3, 2, 3, 2);
+            searchUsrTxtInput.Location = new Point(109, 35);
             searchUsrTxtInput.Name = "searchUsrTxtInput";
-            searchUsrTxtInput.Size = new Size(151, 23);
+            searchUsrTxtInput.Size = new Size(172, 27);
             searchUsrTxtInput.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(251, 31);
+            label1.Location = new Point(287, 41);
             label1.Name = "label1";
-            label1.Size = new Size(106, 15);
+            label1.Size = new Size(133, 20);
             label1.TabIndex = 4;
             label1.Text = "Filter by Category: ";
             // 
@@ -123,22 +123,20 @@
             // 
             dgvServices.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvServices.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvServices.Location = new Point(10, 80);
-            dgvServices.Margin = new Padding(3, 2, 3, 2);
+            dgvServices.Location = new Point(11, 107);
             dgvServices.Name = "dgvServices";
             dgvServices.RowHeadersWidth = 51;
             dgvServices.RowTemplate.Height = 29;
-            dgvServices.Size = new Size(776, 303);
+            dgvServices.Size = new Size(887, 404);
             dgvServices.TabIndex = 2;
             // 
             // addSvcBtn
             // 
             addSvcBtn.BackColor = Color.White;
             addSvcBtn.FlatStyle = FlatStyle.Flat;
-            addSvcBtn.Location = new Point(10, 397);
-            addSvcBtn.Margin = new Padding(3, 2, 3, 2);
+            addSvcBtn.Location = new Point(11, 529);
             addSvcBtn.Name = "addSvcBtn";
-            addSvcBtn.Size = new Size(143, 36);
+            addSvcBtn.Size = new Size(163, 48);
             addSvcBtn.TabIndex = 4;
             addSvcBtn.Text = "Add Service";
             addSvcBtn.UseVisualStyleBackColor = false;
@@ -149,10 +147,9 @@
             deleteSvcBtn.BackColor = Color.DarkRed;
             deleteSvcBtn.FlatStyle = FlatStyle.Flat;
             deleteSvcBtn.ForeColor = Color.White;
-            deleteSvcBtn.Location = new Point(307, 397);
-            deleteSvcBtn.Margin = new Padding(3, 2, 3, 2);
+            deleteSvcBtn.Location = new Point(351, 529);
             deleteSvcBtn.Name = "deleteSvcBtn";
-            deleteSvcBtn.Size = new Size(143, 36);
+            deleteSvcBtn.Size = new Size(163, 48);
             deleteSvcBtn.TabIndex = 5;
             deleteSvcBtn.Text = "Delete Service";
             deleteSvcBtn.UseVisualStyleBackColor = false;
@@ -162,10 +159,9 @@
             // 
             editSvcBtn.BackColor = Color.White;
             editSvcBtn.FlatStyle = FlatStyle.Flat;
-            editSvcBtn.Location = new Point(159, 397);
-            editSvcBtn.Margin = new Padding(3, 2, 3, 2);
+            editSvcBtn.Location = new Point(182, 529);
             editSvcBtn.Name = "editSvcBtn";
-            editSvcBtn.Size = new Size(143, 36);
+            editSvcBtn.Size = new Size(163, 48);
             editSvcBtn.TabIndex = 6;
             editSvcBtn.Text = "Edit Service";
             editSvcBtn.UseVisualStyleBackColor = false;
@@ -173,15 +169,14 @@
             // 
             // ServicesMgmt
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(editSvcBtn);
             Controls.Add(deleteSvcBtn);
             Controls.Add(addSvcBtn);
             Controls.Add(dgvServices);
             Controls.Add(groupBoxAdmin);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "ServicesMgmt";
             Text = "Services Management";
             Load += ServicesMgmt_Load;
@@ -199,7 +194,7 @@
         private Button editSvcBtn;
         private TextBox searchUsrTxtInput;
         private Label lblSearchUsr;
-        private Button button2;
+        private Button filterBtn;
         private Button resetRefreshBtn;
         private Label label1;
         private ComboBox ddlCategory;
