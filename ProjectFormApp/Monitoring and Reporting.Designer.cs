@@ -60,9 +60,8 @@
             flowLayoutPanel1.Controls.Add(groupBox2);
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(199, 364);
+            flowLayoutPanel1.Size = new Size(227, 485);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // panel1
@@ -71,32 +70,31 @@
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(Username_lbl);
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(3, 2);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(163, 102);
+            panel1.Size = new Size(186, 136);
             panel1.TabIndex = 0;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = SystemColors.ControlDarkDark;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(52, 16);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(59, 21);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(55, 47);
+            pictureBox1.Size = new Size(63, 63);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // Username_lbl
             // 
             Username_lbl.AutoSize = true;
-            Username_lbl.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            Username_lbl.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             Username_lbl.ForeColor = Color.White;
-            Username_lbl.Location = new Point(10, 70);
+            Username_lbl.Location = new Point(43, 94);
             Username_lbl.Name = "Username_lbl";
-            Username_lbl.Size = new Size(87, 21);
+            Username_lbl.Size = new Size(89, 23);
             Username_lbl.TabIndex = 0;
             Username_lbl.Text = "Username";
             Username_lbl.TextAlign = ContentAlignment.TopCenter;
@@ -106,11 +104,9 @@
             groupBox2.Controls.Add(categoriesMgmt);
             groupBox2.Controls.Add(serviceMgmt);
             groupBox2.ForeColor = Color.White;
-            groupBox2.Location = new Point(3, 108);
-            groupBox2.Margin = new Padding(3, 2, 3, 2);
+            groupBox2.Location = new Point(3, 145);
             groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(3, 2, 3, 2);
-            groupBox2.Size = new Size(179, 220);
+            groupBox2.Size = new Size(205, 293);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             groupBox2.Text = "Admins/Managers Menu";
@@ -121,10 +117,9 @@
             categoriesMgmt.FlatStyle = FlatStyle.Flat;
             categoriesMgmt.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             categoriesMgmt.ForeColor = SystemColors.Control;
-            categoriesMgmt.Location = new Point(10, 63);
-            categoriesMgmt.Margin = new Padding(3, 2, 3, 2);
+            categoriesMgmt.Location = new Point(11, 84);
             categoriesMgmt.Name = "categoriesMgmt";
-            categoriesMgmt.Size = new Size(152, 45);
+            categoriesMgmt.Size = new Size(174, 60);
             categoriesMgmt.TabIndex = 13;
             categoriesMgmt.Text = "Categories Management";
             categoriesMgmt.UseVisualStyleBackColor = false;
@@ -136,10 +131,9 @@
             serviceMgmt.FlatStyle = FlatStyle.Flat;
             serviceMgmt.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             serviceMgmt.ForeColor = SystemColors.Control;
-            serviceMgmt.Location = new Point(10, 20);
-            serviceMgmt.Margin = new Padding(3, 2, 3, 2);
+            serviceMgmt.Location = new Point(11, 27);
             serviceMgmt.Name = "serviceMgmt";
-            serviceMgmt.Size = new Size(152, 39);
+            serviceMgmt.Size = new Size(174, 52);
             serviceMgmt.TabIndex = 12;
             serviceMgmt.Text = "Services Management";
             serviceMgmt.UseVisualStyleBackColor = false;
@@ -150,9 +144,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 21F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(204, 6);
+            label2.Location = new Point(233, 8);
             label2.Name = "label2";
-            label2.Size = new Size(363, 38);
+            label2.Size = new Size(456, 47);
             label2.TabIndex = 1;
             label2.Text = "Monitoring and Reporting";
             // 
@@ -165,11 +159,9 @@
             groupBox1.Controls.Add(pendingRequest);
             groupBox1.Controls.Add(numberOFRequests);
             groupBox1.ForeColor = Color.White;
-            groupBox1.Location = new Point(204, 73);
-            groupBox1.Margin = new Padding(3, 2, 3, 2);
+            groupBox1.Location = new Point(233, 97);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(3, 2, 3, 2);
-            groupBox1.Size = new Size(508, 256);
+            groupBox1.Size = new Size(581, 341);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Category Dashboard";
@@ -178,9 +170,9 @@
             // 
             OverdueRequestCount.AutoSize = true;
             OverdueRequestCount.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            OverdueRequestCount.Location = new Point(235, 141);
+            OverdueRequestCount.Location = new Point(274, 217);
             OverdueRequestCount.Name = "OverdueRequestCount";
-            OverdueRequestCount.Size = new Size(23, 25);
+            OverdueRequestCount.Size = new Size(28, 32);
             OverdueRequestCount.TabIndex = 5;
             OverdueRequestCount.Text = "0";
             // 
@@ -188,9 +180,9 @@
             // 
             PendRequestCount.AutoSize = true;
             PendRequestCount.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            PendRequestCount.Location = new Point(356, 69);
+            PendRequestCount.Location = new Point(407, 92);
             PendRequestCount.Name = "PendRequestCount";
-            PendRequestCount.Size = new Size(23, 25);
+            PendRequestCount.Size = new Size(28, 32);
             PendRequestCount.TabIndex = 4;
             PendRequestCount.Text = "0";
             // 
@@ -198,9 +190,9 @@
             // 
             RequestsCount.AutoSize = true;
             RequestsCount.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            RequestsCount.Location = new Point(109, 69);
+            RequestsCount.Location = new Point(125, 92);
             RequestsCount.Name = "RequestsCount";
-            RequestsCount.Size = new Size(23, 25);
+            RequestsCount.Size = new Size(28, 32);
             RequestsCount.TabIndex = 3;
             RequestsCount.Text = "0";
             // 
@@ -208,9 +200,9 @@
             // 
             noOfOverdueRequests.AutoSize = true;
             noOfOverdueRequests.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            noOfOverdueRequests.Location = new Point(109, 106);
+            noOfOverdueRequests.Location = new Point(113, 170);
             noOfOverdueRequests.Name = "noOfOverdueRequests";
-            noOfOverdueRequests.Size = new Size(275, 25);
+            noOfOverdueRequests.Size = new Size(352, 32);
             noOfOverdueRequests.TabIndex = 2;
             noOfOverdueRequests.Text = "Number of Overdue Requests";
             // 
@@ -218,9 +210,9 @@
             // 
             pendingRequest.AutoSize = true;
             pendingRequest.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            pendingRequest.Location = new Point(288, 35);
+            pendingRequest.Location = new Point(329, 47);
             pendingRequest.Name = "pendingRequest";
-            pendingRequest.Size = new Size(170, 25);
+            pendingRequest.Size = new Size(217, 32);
             pendingRequest.TabIndex = 1;
             pendingRequest.Text = "Pending Requests";
             // 
@@ -228,19 +220,18 @@
             // 
             numberOFRequests.AutoSize = true;
             numberOFRequests.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            numberOFRequests.Location = new Point(23, 35);
+            numberOFRequests.Location = new Point(26, 47);
             numberOFRequests.Name = "numberOFRequests";
-            numberOFRequests.Size = new Size(194, 25);
+            numberOFRequests.Size = new Size(248, 32);
             numberOFRequests.TabIndex = 0;
             numberOFRequests.Text = "Number of Requests";
             // 
             // ddlCategory
             // 
             ddlCategory.FormattingEnabled = true;
-            ddlCategory.Location = new Point(269, 45);
-            ddlCategory.Margin = new Padding(3, 2, 3, 2);
+            ddlCategory.Location = new Point(307, 60);
             ddlCategory.Name = "ddlCategory";
-            ddlCategory.Size = new Size(189, 23);
+            ddlCategory.Size = new Size(215, 28);
             ddlCategory.TabIndex = 3;
             ddlCategory.SelectedIndexChanged += ddlCategory_SelectedIndexChanged;
             // 
@@ -248,24 +239,23 @@
             // 
             filterLbl.AutoSize = true;
             filterLbl.ForeColor = SystemColors.Window;
-            filterLbl.Location = new Point(208, 48);
+            filterLbl.Location = new Point(238, 64);
             filterLbl.Name = "filterLbl";
-            filterLbl.Size = new Size(55, 15);
+            filterLbl.Size = new Size(69, 20);
             filterLbl.TabIndex = 10;
             filterLbl.Text = "Category";
             // 
             // Monitoring_and_Reporting
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDark;
-            ClientSize = new Size(752, 364);
+            ClientSize = new Size(859, 485);
             Controls.Add(filterLbl);
             Controls.Add(ddlCategory);
             Controls.Add(groupBox1);
             Controls.Add(label2);
             Controls.Add(flowLayoutPanel1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "Monitoring_and_Reporting";
             Text = "Monitoring_and_Reporting";
             Load += Monitoring_and_Reporting_Load;

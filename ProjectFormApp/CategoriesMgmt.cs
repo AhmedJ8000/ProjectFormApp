@@ -90,7 +90,7 @@ namespace ProjectFormApp
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 int firstCell = Convert.ToInt32(dgvCategories.SelectedCells[0].OwningRow.Cells[0].Value);
@@ -107,12 +107,12 @@ namespace ProjectFormApp
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            
+
             int firstCell = Convert.ToInt32(dgvCategories.SelectedCells[0].OwningRow.Cells[0].Value);
             Category category = context.Categories.Find(firstCell);
 
@@ -124,7 +124,24 @@ namespace ProjectFormApp
 
                 RefreshGrid();
             }
-            
+
+        }
+
+        private void mntrBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int firstCell = Convert.ToInt32(dgvCategories.SelectedCells[0].OwningRow.Cells[0].Value);
+                Category category = context.Categories.Find(firstCell);
+                Monitoring_and_Reporting mar = new Monitoring_and_Reporting();
+                mar.Show();
+                mar.SetSelectedCategory(category.CategoryId);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

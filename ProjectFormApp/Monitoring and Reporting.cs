@@ -69,7 +69,8 @@ namespace ProjectFormApp
         private void categoriesMgmt_Click(object sender, EventArgs e)
         {
             CategoriesMgmt cm = new CategoriesMgmt();
-            cm.ShowDialog();
+            cm.Show();
+            this.Close();
         }
 
         private void filterBtn_Click(object sender, EventArgs e)
@@ -86,6 +87,16 @@ namespace ProjectFormApp
         private void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefreshData();
+        }
+        public void SetSelectedCategory(int categoryId)
+        {
+            ddlCategory.SelectedValue = categoryId;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Home home = new Home();
+            home.ShowDialog();
         }
     }
 }
