@@ -35,15 +35,23 @@ namespace ProjectFormApp
         {
             try
             {
-                int PendingRequests = context.ServiceRequests.Where(x => x.IsPending == true).Count();
+                var listToShow = context.ServiceRequests.AsQueryable();
+
+                if (ddlCategory.SelectedValue != null)
+                {
+                    listToShow = listToShow.Where(x => x.IdNavigation.CategoryId.ToString() == ddlCategory.SelectedValue.ToString());
+                }
+
+
+                int PendingRequests = listToShow.Where(x => x.IsPending == true).Count();
                 PendRequestCount.Text = PendingRequests.ToString();
 
-                int TotalRequests = context.ServiceRequests.Count();
+                int TotalRequests = listToShow.Count();
                 RequestsCount.Text = TotalRequests.ToString();
 
                 DateTime today = DateTime.Today;
 
-                int overdueRows = context.ServiceRequests.Where(x => x.DateNeeded < today).Count();
+                int overdueRows = listToShow.Where(x => x.DateNeeded < today).Count();
                 OverdueRequestCount.Text = overdueRows.ToString();
             }
             catch (Exception ex)
@@ -72,6 +80,11 @@ namespace ProjectFormApp
         private void resetRefreshBtn_Click(object sender, EventArgs e)
         {
             ddlCategory.SelectedItem = null;
+            RefreshData();
+        }
+
+        private void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
             RefreshData();
         }
     }
