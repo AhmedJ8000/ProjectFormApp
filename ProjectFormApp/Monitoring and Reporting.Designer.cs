@@ -47,6 +47,7 @@
             ddlCategory = new ComboBox();
             filterBtn = new Button();
             resetRefreshBtn = new Button();
+            filterLbl = new Label();
             flowLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -62,7 +63,7 @@
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(213, 485);
+            flowLayoutPanel1.Size = new Size(227, 485);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // panel1
@@ -92,11 +93,12 @@
             Username_lbl.AutoSize = true;
             Username_lbl.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             Username_lbl.ForeColor = Color.White;
-            Username_lbl.Location = new Point(32, 93);
+            Username_lbl.Location = new Point(12, 94);
             Username_lbl.Name = "Username_lbl";
             Username_lbl.Size = new Size(106, 28);
             Username_lbl.TabIndex = 0;
             Username_lbl.Text = "Username";
+            Username_lbl.TextAlign = ContentAlignment.TopCenter;
             // 
             // groupBox2
             // 
@@ -105,7 +107,7 @@
             groupBox2.ForeColor = Color.White;
             groupBox2.Location = new Point(3, 145);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(186, 293);
+            groupBox2.Size = new Size(205, 293);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             groupBox2.Text = "Admins/Managers Menu";
@@ -116,7 +118,7 @@
             categoriesMgmt.FlatStyle = FlatStyle.Flat;
             categoriesMgmt.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             categoriesMgmt.ForeColor = SystemColors.Control;
-            categoriesMgmt.Location = new Point(6, 84);
+            categoriesMgmt.Location = new Point(12, 84);
             categoriesMgmt.Name = "categoriesMgmt";
             categoriesMgmt.Size = new Size(174, 60);
             categoriesMgmt.TabIndex = 13;
@@ -130,7 +132,7 @@
             serviceMgmt.FlatStyle = FlatStyle.Flat;
             serviceMgmt.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             serviceMgmt.ForeColor = SystemColors.Control;
-            serviceMgmt.Location = new Point(6, 27);
+            serviceMgmt.Location = new Point(12, 26);
             serviceMgmt.Name = "serviceMgmt";
             serviceMgmt.Size = new Size(174, 52);
             serviceMgmt.TabIndex = 12;
@@ -143,7 +145,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 21F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(219, 9);
+            label2.Location = new Point(233, 8);
             label2.Name = "label2";
             label2.Size = new Size(456, 47);
             label2.TabIndex = 1;
@@ -228,7 +230,7 @@
             // ddlCategory
             // 
             ddlCategory.FormattingEnabled = true;
-            ddlCategory.Location = new Point(381, 72);
+            ddlCategory.Location = new Point(370, 61);
             ddlCategory.Name = "ddlCategory";
             ddlCategory.Size = new Size(215, 28);
             ddlCategory.TabIndex = 3;
@@ -239,7 +241,7 @@
             filterBtn.FlatAppearance.BorderColor = Color.Black;
             filterBtn.FlatStyle = FlatStyle.Flat;
             filterBtn.ForeColor = Color.White;
-            filterBtn.Location = new Point(602, 70);
+            filterBtn.Location = new Point(591, 59);
             filterBtn.Margin = new Padding(3, 4, 3, 4);
             filterBtn.Name = "filterBtn";
             filterBtn.Size = new Size(86, 31);
@@ -251,7 +253,8 @@
             // resetRefreshBtn
             // 
             resetRefreshBtn.FlatStyle = FlatStyle.Flat;
-            resetRefreshBtn.Location = new Point(694, 70);
+            resetRefreshBtn.ForeColor = Color.White;
+            resetRefreshBtn.Location = new Point(683, 59);
             resetRefreshBtn.Margin = new Padding(3, 4, 3, 4);
             resetRefreshBtn.Name = "resetRefreshBtn";
             resetRefreshBtn.Size = new Size(131, 31);
@@ -260,12 +263,23 @@
             resetRefreshBtn.UseVisualStyleBackColor = true;
             resetRefreshBtn.Click += resetRefreshBtn_Click;
             // 
+            // filterLbl
+            // 
+            filterLbl.AutoSize = true;
+            filterLbl.ForeColor = SystemColors.Window;
+            filterLbl.Location = new Point(238, 64);
+            filterLbl.Name = "filterLbl";
+            filterLbl.Size = new Size(126, 20);
+            filterLbl.TabIndex = 10;
+            filterLbl.Text = "Filter by Category";
+            // 
             // Monitoring_and_Reporting
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDark;
             ClientSize = new Size(859, 485);
+            Controls.Add(filterLbl);
             Controls.Add(resetRefreshBtn);
             Controls.Add(filterBtn);
             Controls.Add(ddlCategory);
@@ -306,5 +320,6 @@
         private ComboBox ddlCategory;
         private Button filterBtn;
         private Button resetRefreshBtn;
+        private Label filterLbl;
     }
 }
