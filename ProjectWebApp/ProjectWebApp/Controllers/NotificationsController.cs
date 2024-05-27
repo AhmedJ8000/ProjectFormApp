@@ -54,6 +54,13 @@ namespace ProjectWebApp.Controllers
                 return NotFound();
             }
 
+            if (User.IsInRole("Manager") || User.IsInRole("User") && notification.Status == "Unread")
+            {
+                notification.Status = "Read";
+                _context.Update(notification);
+                await _context.SaveChangesAsync();
+            }
+
             return View(notification);
         }
 
