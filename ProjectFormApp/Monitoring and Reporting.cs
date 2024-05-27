@@ -96,7 +96,8 @@ namespace ProjectFormApp
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Home home = new Home();
-            home.ShowDialog();
+            home.Show();
+            this.Close();
         }
     }
 }

@@ -28,7 +28,8 @@ namespace ProjectFormApp
 
         private void Login_Load(object sender, EventArgs e)
         {
-            
+            txtUserName.Text = "manager@test.com";
+            txtPassword.Text = "Test@123";
         }
 
         private async void btnLogin_Click(object sender, EventArgs e)
