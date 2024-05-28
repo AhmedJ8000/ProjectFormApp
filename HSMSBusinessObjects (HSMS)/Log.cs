@@ -9,7 +9,7 @@ namespace HSMSBusinessObjects
         public string Source { get; set; } = null!;
         public string Type { get; set; } = null!;
         public string UserId { get; set; } = null!;
-        public DateTime Date { get; set; }
+        public DateTime LDate { get; set; }
         public TimeSpan Time { get; set; }
         public string? Message { get; set; }
         public string OriginalValues { get; set; } = null!;
