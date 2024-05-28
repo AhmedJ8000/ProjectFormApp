@@ -9,7 +9,7 @@ using HSMSBusinessObjects;
 using ProjectWebApp.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 
-namespace ProjectWebApp
+namespace ProjectWebApp.Controllers
 {
     public class LogsController : Controller
     {
@@ -21,7 +21,7 @@ namespace ProjectWebApp
         }
 
         // GET: Logs
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             IEnumerable<Log> logList;
@@ -166,14 +166,14 @@ namespace ProjectWebApp
             {
                 _context.Logs.Remove(log);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool LogExists(int id)
         {
-          return _context.Logs.Any(e => e.LogId == id);
+            return _context.Logs.Any(e => e.LogId == id);
         }
 
         public static void AddLog(HSMSContext context, string username)

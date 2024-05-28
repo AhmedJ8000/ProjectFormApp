@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HSMSBusinessObjects;
 
-namespace ProjectWebApp
+namespace ProjectWebApp.Controllers
 {
     public class NotificationsController : Controller
     {
@@ -154,14 +154,14 @@ namespace ProjectWebApp
             {
                 _context.Notifications.Remove(notification);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool NotificationExists(int id)
         {
-          return _context.Notifications.Any(e => e.NotificationId == id);
+            return _context.Notifications.Any(e => e.NotificationId == id);
         }
     }
 }
