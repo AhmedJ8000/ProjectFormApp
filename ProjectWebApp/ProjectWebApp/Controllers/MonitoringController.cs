@@ -1,6 +1,7 @@
 ﻿using HSMSBusinessObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ProjectWebApp.ViewModel;
 
 namespace ProjectWebApp.Controllers
@@ -15,9 +16,16 @@ namespace ProjectWebApp.Controllers
         }
 
         [Authorize(Roles ="Admin,Manager")]
-        public IActionResult Index(int? catId)
+        public IActionResult Index(int? catId, string? SearchCategory)
         {
             string catName = _context.Categories.Where(x => x.CategoryId == catId).FirstOrDefault()?.CategoryName;
+
+            ViewBag.Categories = new SelectList(_context.Categories, "CategoryId", "CategoryName");
+
+            if (!catId.HasValue)
+            {
+                return View(new RequestMonitoringViewModel());
+            }
 
             var totalRequests = GetTotalRequestCount(catId);
             var pendingRequests = GetPendingRequestCount(catId);
@@ -25,12 +33,11 @@ namespace ProjectWebApp.Controllers
 
             var viewModel = new RequestMonitoringViewModel
             {
-                CategoryName = catName,
                 TotalRequests = totalRequests,
                 PendingRequests = pendingRequests,
                 OverdueRequests = overdueRequests
             };
-            
+
             return View(viewModel);
         }
 
