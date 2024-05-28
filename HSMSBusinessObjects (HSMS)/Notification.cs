@@ -9,5 +9,9 @@ namespace HSMSBusinessObjects
         public string Message { get; set; } = null!;
         public string Type { get; set; } = null!;
         public string Status { get; set; } = null!;
+        public string UserId { get; set; } = null!;
+        public DateTime? NDate { get; set; }
+
+        public virtual AppUser User { get; set; } = null!;
     }
 }

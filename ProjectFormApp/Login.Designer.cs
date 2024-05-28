@@ -29,101 +29,116 @@ namespace ProjectFormApp
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtUserName = new System.Windows.Forms.TextBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnLogin = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            txtUserName = new TextBox();
+            txtPassword = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            btnLogin = new Button();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            SuspendLayout();
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(140, 92);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.PlaceholderText = "Use the Email as username";
-            this.txtUserName.Size = new System.Drawing.Size(224, 23);
-            this.txtUserName.TabIndex = 0;
+            txtUserName.Location = new Point(160, 123);
+            txtUserName.Margin = new Padding(3, 4, 3, 4);
+            txtUserName.Name = "txtUserName";
+            txtUserName.PlaceholderText = "Use the Email as username";
+            txtUserName.Size = new Size(255, 27);
+            txtUserName.TabIndex = 0;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(140, 133);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(224, 23);
-            this.txtPassword.TabIndex = 1;
+            txtPassword.Location = new Point(160, 177);
+            txtPassword.Margin = new Padding(3, 4, 3, 4);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
+            txtPassword.Size = new Size(255, 27);
+            txtPassword.TabIndex = 1;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 95);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Email:";
+            label1.AutoSize = true;
+            label1.Location = new Point(53, 127);
+            label1.Name = "label1";
+            label1.Size = new Size(49, 20);
+            label1.TabIndex = 2;
+            label1.Text = "Email:";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 136);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 15);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Password:";
+            label2.AutoSize = true;
+            label2.Location = new Point(53, 181);
+            label2.Name = "label2";
+            label2.Size = new Size(73, 20);
+            label2.TabIndex = 3;
+            label2.Text = "Password:";
             // 
             // btnLogin
             // 
-            this.btnLogin.BackColor = System.Drawing.Color.Lavender;
-            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogin.Location = new System.Drawing.Point(140, 188);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(224, 35);
-            this.btnLogin.TabIndex = 4;
-            this.btnLogin.Text = "Login";
-            this.btnLogin.UseVisualStyleBackColor = false;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            btnLogin.BackColor = Color.Lavender;
+            btnLogin.FlatStyle = FlatStyle.Flat;
+            btnLogin.Location = new Point(160, 251);
+            btnLogin.Margin = new Padding(3, 4, 3, 4);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(256, 47);
+            btnLogin.TabIndex = 4;
+            btnLogin.Text = "Login";
+            btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += btnLogin_Click;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(46, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 28);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Welcome!";
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(53, 29);
+            label3.Name = "label3";
+            label3.Size = new Size(125, 35);
+            label3.TabIndex = 5;
+            label3.Text = "Welcome!";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(46, 55);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(291, 15);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Please login with your credintials to access the system";
+            label4.AutoSize = true;
+            label4.Location = new Point(53, 73);
+            label4.Name = "label4";
+            label4.Size = new Size(364, 20);
+            label4.TabIndex = 6;
+            label4.Text = "Please login with your credintials to access the system";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Location = new Point(184, 4);
+            label5.Name = "label5";
+            label5.Size = new Size(142, 60);
+            label5.TabIndex = 7;
+            label5.Text = "HSMS";
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(436, 261);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.txtUserName);
-            this.Name = "Login";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_FormClosing);
-            this.Load += new System.EventHandler(this.Login_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            ClientSize = new Size(498, 348);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(btnLogin);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(txtPassword);
+            Controls.Add(txtUserName);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "Login";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Login";
+            FormClosing += Login_FormClosing;
+            Load += Login_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -135,6 +150,7 @@ namespace ProjectFormApp
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private Label label5;
     }
 }
 

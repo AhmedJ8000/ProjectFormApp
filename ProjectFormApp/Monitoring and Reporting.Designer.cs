@@ -38,6 +38,7 @@
             serviceMgmt = new Button();
             label2 = new Label();
             groupBox1 = new GroupBox();
+            accessLbl = new Label();
             OverdueRequestCount = new Label();
             PendRequestCount = new Label();
             RequestsCount = new Label();
@@ -88,15 +89,16 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // Username_lbl
             // 
             Username_lbl.AutoSize = true;
-            Username_lbl.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            Username_lbl.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             Username_lbl.ForeColor = Color.White;
-            Username_lbl.Location = new Point(10, 70);
+            Username_lbl.Location = new Point(38, 70);
             Username_lbl.Name = "Username_lbl";
-            Username_lbl.Size = new Size(87, 21);
+            Username_lbl.Size = new Size(76, 19);
             Username_lbl.TabIndex = 0;
             Username_lbl.Text = "Username";
             Username_lbl.TextAlign = ContentAlignment.TopCenter;
@@ -124,7 +126,7 @@
             categoriesMgmt.Location = new Point(10, 63);
             categoriesMgmt.Margin = new Padding(3, 2, 3, 2);
             categoriesMgmt.Name = "categoriesMgmt";
-            categoriesMgmt.Size = new Size(152, 45);
+            categoriesMgmt.Size = new Size(163, 45);
             categoriesMgmt.TabIndex = 13;
             categoriesMgmt.Text = "Categories Management";
             categoriesMgmt.UseVisualStyleBackColor = false;
@@ -139,7 +141,7 @@
             serviceMgmt.Location = new Point(10, 20);
             serviceMgmt.Margin = new Padding(3, 2, 3, 2);
             serviceMgmt.Name = "serviceMgmt";
-            serviceMgmt.Size = new Size(152, 39);
+            serviceMgmt.Size = new Size(163, 39);
             serviceMgmt.TabIndex = 12;
             serviceMgmt.Text = "Services Management";
             serviceMgmt.UseVisualStyleBackColor = false;
@@ -165,20 +167,31 @@
             groupBox1.Controls.Add(pendingRequest);
             groupBox1.Controls.Add(numberOFRequests);
             groupBox1.ForeColor = Color.White;
-            groupBox1.Location = new Point(204, 73);
+            groupBox1.Location = new Point(204, 95);
             groupBox1.Margin = new Padding(3, 2, 3, 2);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(3, 2, 3, 2);
-            groupBox1.Size = new Size(508, 256);
+            groupBox1.Size = new Size(508, 234);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Category Dashboard";
+            // 
+            // accessLbl
+            // 
+            accessLbl.AutoSize = true;
+            accessLbl.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            accessLbl.ForeColor = Color.Red;
+            accessLbl.Location = new Point(260, 72);
+            accessLbl.Name = "accessLbl";
+            accessLbl.Size = new Size(374, 25);
+            accessLbl.TabIndex = 6;
+            accessLbl.Text = "Access to Category DashBoard is Denied!";
             // 
             // OverdueRequestCount
             // 
             OverdueRequestCount.AutoSize = true;
             OverdueRequestCount.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            OverdueRequestCount.Location = new Point(235, 141);
+            OverdueRequestCount.Location = new Point(240, 163);
             OverdueRequestCount.Name = "OverdueRequestCount";
             OverdueRequestCount.Size = new Size(23, 25);
             OverdueRequestCount.TabIndex = 5;
@@ -208,7 +221,7 @@
             // 
             noOfOverdueRequests.AutoSize = true;
             noOfOverdueRequests.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            noOfOverdueRequests.Location = new Point(109, 106);
+            noOfOverdueRequests.Location = new Point(99, 128);
             noOfOverdueRequests.Name = "noOfOverdueRequests";
             noOfOverdueRequests.Size = new Size(275, 25);
             noOfOverdueRequests.TabIndex = 2;
@@ -260,6 +273,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDark;
             ClientSize = new Size(752, 364);
+            Controls.Add(accessLbl);
             Controls.Add(filterLbl);
             Controls.Add(ddlCategory);
             Controls.Add(groupBox1);
@@ -299,5 +313,6 @@
         private Label RequestsCount;
         private ComboBox ddlCategory;
         private Label filterLbl;
+        private Label accessLbl;
     }
 }

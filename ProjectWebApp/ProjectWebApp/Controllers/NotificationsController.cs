@@ -24,7 +24,7 @@ namespace ProjectWebApp.Controllers
         {
             IEnumerable<Notification> notificationList;
 
-            notificationList = _context.Notifications;
+            notificationList = _context.Notifications.OrderByDescending(x => x.NDate);
 
             if (!string.IsNullOrEmpty(SearchString))
             {
@@ -52,6 +52,13 @@ namespace ProjectWebApp.Controllers
             if (notification == null)
             {
                 return NotFound();
+            }
+
+            if (User.IsInRole("Manager") || User.IsInRole("User") && notification.Status == "Unread")
+            {
+                notification.Status = "Read";
+                _context.Update(notification);
+                await _context.SaveChangesAsync();
             }
 
             return View(notification);

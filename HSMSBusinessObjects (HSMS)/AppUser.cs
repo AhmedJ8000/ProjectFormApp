@@ -11,6 +11,7 @@ namespace HSMSBusinessObjects
             Comments = new HashSet<Comment>();
             Documents = new HashSet<Document>();
             Logs = new HashSet<Log>();
+            Notifications = new HashSet<Notification>();
             ServiceRequests = new HashSet<ServiceRequest>();
         }
 
@@ -34,6 +35,7 @@ namespace HSMSBusinessObjects
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Document> Documents { get; set; }
         public virtual ICollection<Log> Logs { get; set; }
+        public virtual ICollection<Notification> Notifications { get; set; }
         public virtual ICollection<ServiceRequest> ServiceRequests { get; set; }
     }
 }

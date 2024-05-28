@@ -38,7 +38,6 @@ namespace ProjectFormApp
             Global.AllAdmins = null;
             Global.AllManagers = null;
             Global.AllUsers = null;
-
             this.Hide();
 
             Login login = new Login();
@@ -51,13 +50,14 @@ namespace ProjectFormApp
 
         private void Home_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            //Application.Exit();
         }
 
-        private void monRptBtn_Click(object sender, EventArgs e)
+        private void backBtn_Click(object sender, EventArgs e)
         {
             Monitoring_and_Reporting mar = new Monitoring_and_Reporting();
-            mar.ShowDialog();
+            mar.Show();
+            this.Close();
         }
     }
 }

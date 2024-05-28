@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 namespace HSMSBusinessObjects
 {
     public partial class HSMSContext : DbContext
-    {//
+    {
         public HSMSContext()
         {
         }
@@ -140,7 +140,9 @@ namespace HSMSBusinessObjects
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Date).HasColumnType("date");
+                entity.Property(e => e.LDate)
+                    .HasColumnType("date")
+                    .HasColumnName("lDate");
 
                 entity.Property(e => e.Message)
                     .HasMaxLength(200)
@@ -150,15 +152,15 @@ namespace HSMSBusinessObjects
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Source)
+                entity.Property(e => e.Status)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Table)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Time).HasColumnType("time(0)");
-
-                entity.Property(e => e.Type)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
 
                 entity.Property(e => e.UserId)
                     .HasMaxLength(450)
@@ -181,6 +183,10 @@ namespace HSMSBusinessObjects
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
+                entity.Property(e => e.NDate)
+                    .HasColumnType("date")
+                    .HasColumnName("nDate");
+
                 entity.Property(e => e.Status)
                     .HasMaxLength(6)
                     .IsUnicode(false);
@@ -188,6 +194,16 @@ namespace HSMSBusinessObjects
                 entity.Property(e => e.Type)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(450)
+                    .HasColumnName("UserID");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Notifications)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Notification_AppUser");
             });
 
             modelBuilder.Entity<Service>(entity =>
