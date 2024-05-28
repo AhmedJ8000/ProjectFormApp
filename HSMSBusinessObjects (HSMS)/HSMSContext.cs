@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 namespace HSMSBusinessObjects
 {
     public partial class HSMSContext : DbContext
-    {//
+    {
         public HSMSContext()
         {
         }
@@ -140,7 +140,9 @@ namespace HSMSBusinessObjects
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Date).HasColumnType("date");
+                entity.Property(e => e.LDate)
+                    .HasColumnType("date")
+                    .HasColumnName("lDate");
 
                 entity.Property(e => e.Message)
                     .HasMaxLength(200)
@@ -177,6 +179,8 @@ namespace HSMSBusinessObjects
 
                 entity.Property(e => e.NotificationId).HasColumnName("NotificationID");
 
+                entity.Property(e => e.Date).HasColumnType("date");
+
                 entity.Property(e => e.Message)
                     .HasMaxLength(100)
                     .IsUnicode(false);
@@ -188,6 +192,16 @@ namespace HSMSBusinessObjects
                 entity.Property(e => e.Type)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(450)
+                    .HasColumnName("UserID");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Notifications)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Notification_AppUser");
             });
 
             modelBuilder.Entity<Service>(entity =>
