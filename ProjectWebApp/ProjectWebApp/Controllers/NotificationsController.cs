@@ -24,7 +24,7 @@ namespace ProjectWebApp.Controllers
         {
             IEnumerable<Notification> notificationList;
 
-            notificationList = _context.Notifications.OrderByDescending(x => x.Date);
+            notificationList = _context.Notifications.OrderByDescending(x => x.NDate);
 
             if (!string.IsNullOrEmpty(SearchString))
             {
