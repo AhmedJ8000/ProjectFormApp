@@ -1,0 +1,31 @@
+﻿@using ProjectWebApp.ViewModel;
+@model RequestMonitoringViewModel;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>Request Monitoring</h1>
+<form asp-controller="Monitoring" asp-action="Index" method="get">
+    @Html.DropDownList("catId", ViewBag.Categories as SelectList, "Select Category", new { @onchange = "this.form.submit()" })
+</form>
+
+
+<h3>@Model.CategoryName</h3>
+<ul>
+    <li>Total Requests: @Model.TotalRequests</li>
+    <li>Pending Requests: @Model.PendingRequests</li>
+    <li>Overdue Requests: @Model.OverdueRequests</li>
+</ul>
+
+@using (Html.BeginForm("Index", "Categories", FormMethod.Post))
+{
+    <button type="submit" class="btn btn-primary">Back to Index</button>
+}
+
+<style>
+    li {
+        margin-bottom: 10px;
+    }
+</style>

@@ -1,4 +1,5 @@
-﻿@model HSMSBusinessObjects.Category;
+﻿@using ProjectWebApp.ViewModel;
+@model NewCategoryViewModel;
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,18 +14,19 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="CategoryName" class="control-label"></label>
-                <input asp-for="CategoryName" class="form-control" />
-                <span asp-validation-for="CategoryName" class="text-danger"></span>
+                <label asp-for="category.CategoryName" class="control-label"></label>
+                <input asp-for="category.CategoryName" class="form-control" />
+                <span asp-validation-for="category.CategoryName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+                <label asp-for="category.Description" class="control-label"></label>
+                <input asp-for="category.Description" class="form-control" />
+                <span asp-validation-for="category.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ManagerId" class="control-label"></label>
-                <select asp-for="ManagerId" class="form-control" asp-items="ViewBag.ManagerId"></select>
+                <label asp-for="category.ManagerId" class="control-label"></label>
+                <select asp-for="category.ManagerId" class="form-control" asp-items="@Model.Users
+                             .Select(i => new SelectListItem{ Text = i.UserName, Value = i.Id.ToString() })"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
