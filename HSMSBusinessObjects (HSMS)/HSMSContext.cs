@@ -152,15 +152,15 @@ namespace HSMSBusinessObjects
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Source)
+                entity.Property(e => e.Status)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Table)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Time).HasColumnType("time(0)");
-
-                entity.Property(e => e.Type)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
 
                 entity.Property(e => e.UserId)
                     .HasMaxLength(450)
@@ -179,11 +179,13 @@ namespace HSMSBusinessObjects
 
                 entity.Property(e => e.NotificationId).HasColumnName("NotificationID");
 
-                entity.Property(e => e.Date).HasColumnType("date");
-
                 entity.Property(e => e.Message)
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.Property(e => e.NDate)
+                    .HasColumnType("date")
+                    .HasColumnName("nDate");
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(6)
