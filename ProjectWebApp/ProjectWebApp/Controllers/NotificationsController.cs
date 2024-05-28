@@ -21,7 +21,7 @@ namespace ProjectWebApp.Controllers
         // GET: Notifications
         public async Task<IActionResult> Index()
         {
-            var hSMSContext = _context.Notifications.Include(n => n.User);
+            var hSMSContext = _context.Notifications.Include(n => n.User).OrderByDescending(x => x.NDate);
             return View(await hSMSContext.ToListAsync());
         }
 
@@ -39,6 +39,13 @@ namespace ProjectWebApp.Controllers
             if (notification == null)
             {
                 return NotFound();
+            }
+
+            if (User.IsInRole("Manager") || User.IsInRole("User") && notification.Status == "Unread")
+            {
+                notification.Status = "Read";
+                _context.Update(notification);
+                await _context.SaveChangesAsync();
             }
 
             return View(notification);
