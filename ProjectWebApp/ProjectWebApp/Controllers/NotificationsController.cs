@@ -47,12 +47,13 @@ namespace ProjectWebApp.Controllers
                 return NotFound();
             }
 
-            var notification = await _context.Notifications
+            var notification = await _context.Notifications.Include(n => n.User)
                 .FirstOrDefaultAsync(m => m.NotificationId == id);
             if (notification == null)
             {
                 return NotFound();
             }
+
 
             if (User.IsInRole("Manager") || User.IsInRole("User") && notification.Status == "Unread")
             {
@@ -67,6 +68,7 @@ namespace ProjectWebApp.Controllers
         // GET: Notifications/Create
         public IActionResult Create()
         {
+            ViewData["UserId"] = new SelectList(_context.AppUsers, "Id", "Id");
             return View();
         }
 
@@ -83,6 +85,7 @@ namespace ProjectWebApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["UserId"] = new SelectList(_context.AppUsers, "Id", "Id", notification.UserId);
             return View(notification);
         }
 
@@ -99,6 +102,7 @@ namespace ProjectWebApp.Controllers
             {
                 return NotFound();
             }
+            ViewData["UserId"] = new SelectList(_context.AppUsers, "Id", "Id", notification.UserId);
             return View(notification);
         }
 
@@ -134,6 +138,7 @@ namespace ProjectWebApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["UserId"] = new SelectList(_context.AppUsers, "Id", "Id", notification.UserId);
             return View(notification);
         }
 
@@ -146,6 +151,7 @@ namespace ProjectWebApp.Controllers
             }
 
             var notification = await _context.Notifications
+                .Include(n => n.User)
                 .FirstOrDefaultAsync(m => m.NotificationId == id);
             if (notification == null)
             {
