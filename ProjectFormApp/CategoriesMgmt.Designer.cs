@@ -37,7 +37,8 @@
             btnAdd = new Button();
             btnEdit = new Button();
             btnDelete = new Button();
-            dashboardBtn = new Button();
+            mntrBtn = new Button();
+            backBtn = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCategories).BeginInit();
             SuspendLayout();
@@ -103,6 +104,7 @@
             dgvCategories.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCategories.Location = new Point(12, 93);
             dgvCategories.Name = "dgvCategories";
+            dgvCategories.RowHeadersWidth = 51;
             dgvCategories.RowTemplate.Height = 25;
             dgvCategories.Size = new Size(776, 303);
             dgvCategories.TabIndex = 1;
@@ -142,16 +144,27 @@
             btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
-            // dashboardBtn
+            // mntrBtn
             // 
-            dashboardBtn.FlatStyle = FlatStyle.Flat;
-            dashboardBtn.Location = new Point(752, 402);
-            dashboardBtn.Name = "dashboardBtn";
-            dashboardBtn.Size = new Size(36, 36);
-            dashboardBtn.TabIndex = 6;
-            dashboardBtn.Text = "Dashboard ";
-            dashboardBtn.UseVisualStyleBackColor = true;
-            dashboardBtn.Click += dashboardBtn_Click;
+            mntrBtn.FlatStyle = FlatStyle.Flat;
+            mntrBtn.Location = new Point(458, 402);
+            mntrBtn.Name = "mntrBtn";
+            mntrBtn.Size = new Size(145, 36);
+            mntrBtn.TabIndex = 7;
+            mntrBtn.Text = "Monitor";
+            mntrBtn.UseVisualStyleBackColor = true;
+            mntrBtn.Click += mntrBtn_Click;
+            // 
+            // backBtn
+            // 
+            backBtn.FlatStyle = FlatStyle.Flat;
+            backBtn.Location = new Point(693, 402);
+            backBtn.Name = "backBtn";
+            backBtn.Size = new Size(89, 36);
+            backBtn.TabIndex = 8;
+            backBtn.Text = "Back";
+            backBtn.UseVisualStyleBackColor = true;
+            backBtn.Click += backBtn_Click;
             // 
             // CategoriesMgmt
             // 
@@ -159,14 +172,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(800, 450);
-            Controls.Add(dashboardBtn);
+            Controls.Add(backBtn);
+            Controls.Add(mntrBtn);
             Controls.Add(btnDelete);
             Controls.Add(btnEdit);
             Controls.Add(btnAdd);
             Controls.Add(dgvCategories);
             Controls.Add(groupBox1);
             Name = "CategoriesMgmt";
-            Text = "CategoriesMgmt";
+            Text = "Categories Management";
             Load += CategoriesMgmt_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -183,8 +197,9 @@
         private Button btnAdd;
         private Button btnEdit;
         private Button btnDelete;
-        private Button dashboardBtn;
         private TextBox txtCategoryID;
         private Label label2;
+        private Button mntrBtn;
+        private Button backBtn;
     }
 }

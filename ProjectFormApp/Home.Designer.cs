@@ -39,7 +39,7 @@ namespace ProjectFormApp
             lblUserID = new Label();
             label5 = new Label();
             lblRole = new Label();
-            monRptBtn = new Button();
+            backBtn = new Button();
             SuspendLayout();
             // 
             // label1
@@ -93,7 +93,7 @@ namespace ProjectFormApp
             // 
             btnLogout.BackColor = Color.Lavender;
             btnLogout.FlatStyle = FlatStyle.Flat;
-            btnLogout.Location = new Point(201, 374);
+            btnLogout.Location = new Point(51, 372);
             btnLogout.Margin = new Padding(3, 4, 3, 4);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(256, 47);
@@ -140,18 +140,18 @@ namespace ProjectFormApp
             lblRole.TabIndex = 8;
             lblRole.Text = "lblRole";
             // 
-            // monRptBtn
+            // backBtn
             // 
-            monRptBtn.BackColor = SystemColors.ActiveCaption;
-            monRptBtn.FlatStyle = FlatStyle.Flat;
-            monRptBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            monRptBtn.Location = new Point(215, 270);
-            monRptBtn.Name = "monRptBtn";
-            monRptBtn.Size = new Size(216, 29);
-            monRptBtn.TabIndex = 10;
-            monRptBtn.Text = "Monitoring and Reporting";
-            monRptBtn.UseVisualStyleBackColor = false;
-            monRptBtn.Click += monRptBtn_Click;
+            backBtn.BackColor = Color.Lavender;
+            backBtn.FlatStyle = FlatStyle.Flat;
+            backBtn.Location = new Point(361, 372);
+            backBtn.Margin = new Padding(3, 4, 3, 4);
+            backBtn.Name = "backBtn";
+            backBtn.Size = new Size(256, 47);
+            backBtn.TabIndex = 10;
+            backBtn.Text = "Back";
+            backBtn.UseVisualStyleBackColor = false;
+            backBtn.Click += backBtn_Click;
             // 
             // Home
             // 
@@ -159,7 +159,7 @@ namespace ProjectFormApp
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(674, 443);
-            Controls.Add(monRptBtn);
+            Controls.Add(backBtn);
             Controls.Add(label5);
             Controls.Add(lblRole);
             Controls.Add(label4);
@@ -192,6 +192,6 @@ namespace ProjectFormApp
         private System.Windows.Forms.Label lblUserID;
         private Label label5;
         private Label lblRole;
-        private Button monRptBtn;
+        private Button backBtn;
     }
 }

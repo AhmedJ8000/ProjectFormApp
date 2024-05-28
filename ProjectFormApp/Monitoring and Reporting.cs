@@ -23,12 +23,25 @@ namespace ProjectFormApp
 
         private void Monitoring_and_Reporting_Load(object sender, EventArgs e)
         {
-            Username_lbl.Text = Global.User.UserName;
-            ddlCategory.DataSource = context.Categories.ToList();
-            ddlCategory.DisplayMember = "CategoryName";
-            ddlCategory.ValueMember = "CategoryId";
-            ddlCategory.SelectedItem = null;
-            RefreshData();
+            if (Global.RoleName == "Manager" || Global.RoleName == "Admin")
+            {
+                Username_lbl.Text = Global.User.UserName;
+                ddlCategory.DataSource = context.Categories.ToList();
+                ddlCategory.DisplayMember = "CategoryName";
+                ddlCategory.ValueMember = "CategoryId";
+                ddlCategory.SelectedItem = null;
+                RefreshData();
+                accessLbl.Visible = false;
+                ddlCategory.Enabled = true;
+                groupBox1.Enabled = true;
+            }
+            else
+            {
+                Username_lbl.Text = Global.User.UserName;
+                groupBox1.Visible = false;
+                ddlCategory.Enabled = false;
+                accessLbl.Visible = true;
+            }
         }
 
         public void RefreshData()
@@ -69,7 +82,8 @@ namespace ProjectFormApp
         private void categoriesMgmt_Click(object sender, EventArgs e)
         {
             CategoriesMgmt cm = new CategoriesMgmt();
-            cm.ShowDialog();
+            cm.Show();
+            this.Close();
         }
 
         private void filterBtn_Click(object sender, EventArgs e)
@@ -86,6 +100,17 @@ namespace ProjectFormApp
         private void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefreshData();
+        }
+        public void SetSelectedCategory(int categoryId)
+        {
+            ddlCategory.SelectedValue = categoryId;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Home home = new Home();
+            home.Show();
+            this.Close();
         }
     }
 }
