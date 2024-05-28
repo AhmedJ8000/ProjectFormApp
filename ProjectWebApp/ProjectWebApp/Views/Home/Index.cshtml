@@ -2,16 +2,34 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<div class="text-left">
     <h1 class="display-4">Welcome</h1>
     <h2>@User.Identity.Name</h2>
     <p>
-        A recently established home maintenance service provider aims to transition its service request procedures to an online platform for enhanced efficiency in service pricing 
-        (typically structured around fixed rates for various service types), 
-        service options, request management, and client monitoring. 
-        Company executives seek to establish and oversee service classifications, 
-        administer services, accept client service requests, assign staff to tasks, 
-        and monitor their own category. Team members require access to view their assigned service requests, 
-        update their statuses, and handle relevant comments and documents associated with requests.
+        This web project involves the development of a comprehensive Home Services Management System. This system is designed to assist home service companies in managing and tracking various service requests, such as plumbing, electrical work, painting, and more.
+    </p>
+    <p>
+        The key features of our Home Services Management System include:
+    </p>
+    <ul>
+        <li><strong>Authentication and Authorization:</strong> Secure login and role-based access control for administrators, managers, technicians, and customers.</li>
+        <li><strong>Service Management:</strong> Ability for managers to create and manage service categories and services, including pricing and descriptions.</li>
+        <li><strong>Service Request Handling:</strong> Customers can request services, and managers can assign these requests to technicians. Both can track the progress of these requests.</li>
+        <li><strong>Notification System:</strong> Real-time notifications for users regarding the status of their service requests.</li>
+        <li><strong>Dashboard and Reporting:</strong> Detailed dashboards and reports for administrators and managers to monitor service requests and technician performance.</li>
+        <li><strong>Comment and Document Management:</strong> Users can add comments and upload documents related to service requests.</li>
+        <li><strong>Logging and Audit Trails:</strong> Comprehensive logging of user actions and system events for security and auditing purposes.</li>
+    </ul>
+    <p>
+        The system is implemented using the following technologies:
+    </p>
+    <ul>
+        <li><strong>ASP.NET Core MVC:</strong> For the web application interface, allowing users to interact with the system via a web browser.</li>
+        <li><strong>Windows Forms:</strong> For a desktop application providing quick access for administrators and managers.</li>
+        <li><strong>Entity Framework Core:</strong> To manage the database interactions and ensure data consistency and integrity.</li>
+        <li><strong>Microsoft SQL Server:</strong> As the backend database for storing all the system's data.</li>
+    </ul>
+    <p>
+        The project is a group effort, with each member taking a leadership role in different components but working collaboratively to ensure the success of the entire system. We aim to deliver a user-friendly and efficient solution for managing home services, ensuring a seamless experience for both service providers and customers.
     </p>
 </div>
