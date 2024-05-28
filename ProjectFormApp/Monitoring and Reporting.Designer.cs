@@ -110,7 +110,7 @@
             groupBox2.Size = new Size(205, 293);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Admins/Managers Menu";
+            groupBox2.Text = "Users Menu";
             // 
             // categoriesMgmt
             // 
