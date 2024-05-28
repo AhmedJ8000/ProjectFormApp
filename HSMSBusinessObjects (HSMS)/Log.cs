@@ -6,8 +6,8 @@ namespace HSMSBusinessObjects
     public partial class Log
     {
         public int LogId { get; set; }
-        public string Source { get; set; } = null!;
-        public string Type { get; set; } = null!;
+        public string Table { get; set; } = null!;
+        public string Status { get; set; } = null!;
         public string UserId { get; set; } = null!;
         public DateTime LDate { get; set; }
         public TimeSpan Time { get; set; }

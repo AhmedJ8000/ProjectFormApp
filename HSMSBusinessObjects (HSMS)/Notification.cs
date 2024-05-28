@@ -10,7 +10,7 @@ namespace HSMSBusinessObjects
         public string Type { get; set; } = null!;
         public string Status { get; set; } = null!;
         public string UserId { get; set; } = null!;
-        public DateTime? Date { get; set; }
+        public DateTime? NDate { get; set; }
 
         public virtual AppUser User { get; set; } = null!;
     }
