@@ -26,6 +26,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.notification.Status)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.notification.NDate)
+            </th>
             @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("Technician") || User.IsInRole("User"))
             {
                 <th>Action</th>
@@ -44,6 +47,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NDate)
                 </td>
 
                 @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("Technician") || User.IsInRole("User"))

@@ -39,6 +39,7 @@
             addSvcBtn = new Button();
             deleteSvcBtn = new Button();
             editSvcBtn = new Button();
+            backBtn = new Button();
             groupBoxAdmin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvServices).BeginInit();
             SuspendLayout();
@@ -167,11 +168,24 @@
             editSvcBtn.UseVisualStyleBackColor = false;
             editSvcBtn.Click += editSvcBtn_Click;
             // 
+            // backBtn
+            // 
+            backBtn.FlatStyle = FlatStyle.Flat;
+            backBtn.Location = new Point(799, 529);
+            backBtn.Margin = new Padding(3, 4, 3, 4);
+            backBtn.Name = "backBtn";
+            backBtn.Size = new Size(102, 48);
+            backBtn.TabIndex = 9;
+            backBtn.Text = "Back";
+            backBtn.UseVisualStyleBackColor = true;
+            backBtn.Click += backBtn_Click;
+            // 
             // ServicesMgmt
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(914, 600);
+            Controls.Add(backBtn);
             Controls.Add(editSvcBtn);
             Controls.Add(deleteSvcBtn);
             Controls.Add(addSvcBtn);
@@ -198,5 +212,6 @@
         private Button resetRefreshBtn;
         private Label label1;
         private ComboBox ddlCategory;
+        private Button backBtn;
     }
 }

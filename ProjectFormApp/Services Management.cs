@@ -32,6 +32,13 @@ namespace ProjectFormApp
                 addSvcBtn.Visible = false;
                 deleteSvcBtn.Visible = false;
                 editSvcBtn.Visible = false;
+                backBtn.Visible = true;
+            }
+            else
+            {
+                addSvcBtn.Visible = true;
+                deleteSvcBtn.Visible = true;
+                editSvcBtn.Visible = true;
             }
         }
         private void RefreshGrid()
@@ -127,5 +134,9 @@ namespace ProjectFormApp
             RefreshGrid();
         }
 
+        private void backBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }
