@@ -83,11 +83,46 @@ namespace ProjectWebApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public IActionResult Create(NewCategoryViewModel newCat)
+        public async Task<IActionResult> Create(NewCategoryViewModel newCat)
         {
-            _context.Categories.Add(newCat.category);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+            if(newCat == null)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                _context.ChangeTracker.DetectChanges();
+                _context.Categories.Add(newCat.category);
+
+                var entry = _context.ChangeTracker.Entries().FirstOrDefault();
+
+                Log log = new Log
+                {
+                    Table = entry.Entity.GetType().Name,
+                    Status = entry.State.ToString(),
+                    LDate = DateTime.Now,
+                    UserId = _context.AppUsers.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id,
+                    User = _context.AppUsers.Where(x => x.Id == _context.AppUsers.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id).FirstOrDefault(),
+                    OriginalValues = entry.CurrentValues.GetType().Name,
+                    CurrentValues = entry.CurrentValues.GetType().Name,
+                    Time = DateTime.Now.TimeOfDay
+                };
+                _context.Logs.Add(log);
+
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                var viewModel = new NewCategoryViewModel
+                {
+                    category = newCat.category,
+                    Categories = _context.Categories,
+                    Users = _context.AppUsers
+                };
+                return View(viewModel);
+            }
         }
 
         // GET: Categories/Edit/5
@@ -125,7 +160,9 @@ namespace ProjectWebApp.Controllers
             {
                 try
                 {
+                    _context.ChangeTracker.DetectChanges();
                     _context.Update(category);
+                    LogsController.AddLog(_context, User.Identity.Name);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -182,26 +219,7 @@ namespace ProjectWebApp.Controllers
                 _context.Categories.Remove(category);
             }
 
-            var entries = _context.ChangeTracker.Entries();
-
-            foreach (var entry in entries)
-            {
-
-                Log log = new Log
-                {
-                    Table = entry.Entity.GetType().Name,
-                    Status = entry.State.ToString(),
-                    LDate = DateTime.Now,
-                    UserId = _context.AppUsers.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id,
-                    User = _context.AppUsers.Where(x => x.Id == _context.AppUsers.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id).FirstOrDefault(),
-                    OriginalValues = entry.CurrentValues.GetType().Name,
-                    CurrentValues = entry.CurrentValues.GetType().Name,
-                    Time = DateTime.Now.TimeOfDay
-                };
-                _context.Logs.Add(log);
-
-
-            }
+            LogsController.AddLog(_context, User.Identity.Name);
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

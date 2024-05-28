@@ -80,7 +80,22 @@ namespace ProjectWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                _context.ChangeTracker.DetectChanges();
                 _context.Add(service);
+                var entry = _context.ChangeTracker.Entries().FirstOrDefault();
+
+                Log log = new Log
+                {
+                    Table = entry.Entity.GetType().Name,
+                    Status = entry.State.ToString(),
+                    LDate = DateTime.Now,
+                    UserId = _context.AppUsers.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id,
+                    User = _context.AppUsers.Where(x => x.Id == _context.AppUsers.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id).FirstOrDefault(),
+                    OriginalValues = entry.CurrentValues.GetType().Name,
+                    CurrentValues = entry.CurrentValues.GetType().Name,
+                    Time = DateTime.Now.TimeOfDay
+                };
+                _context.Logs.Add(log);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -121,7 +136,9 @@ namespace ProjectWebApp.Controllers
             {
                 try
                 {
+                    _context.ChangeTracker.DetectChanges();
                     _context.Update(service);
+                    LogsController.AddLog(_context, User.Identity.Name);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -172,7 +189,9 @@ namespace ProjectWebApp.Controllers
             var service = await _context.Services.FindAsync(id);
             if (service != null)
             {
+                _context.ChangeTracker.DetectChanges();
                 _context.Services.Remove(service);
+                LogsController.AddLog(_context, User.Identity.Name);
             }
 
             await _context.SaveChangesAsync();
