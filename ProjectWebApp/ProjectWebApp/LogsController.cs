@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HSMSBusinessObjects;
 using ProjectWebApp.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProjectWebApp
 {
@@ -20,6 +21,7 @@ namespace ProjectWebApp
         }
 
         // GET: Logs
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> Index()
         {
             IEnumerable<Log> logList;
@@ -180,18 +182,25 @@ namespace ProjectWebApp
 
             foreach (var entry in entries)
             {
-                Log log = new Log
+                try
                 {
-                    Table = entry.Entity.GetType().Name,
-                    Status = entry.State.ToString(),
-                    LDate = DateTime.Now,
-                    UserId = context.AppUsers.Where(x => x.UserName == username).FirstOrDefault().Id,
-                    User = context.AppUsers.Where(x => x.Id == context.AppUsers.Where(x => x.UserName == username).FirstOrDefault().Id).FirstOrDefault(),
-                    OriginalValues = entry.CurrentValues.GetType().Name,
-                    CurrentValues = entry.CurrentValues.GetType().Name,
-                    Time = DateTime.Now.TimeOfDay
-                };
-                context.Logs.Add(log);
+                    Log log = new Log
+                    {
+                        Table = entry.Entity.GetType().Name,
+                        Status = entry.State.ToString(),
+                        LDate = DateTime.Now,
+                        UserId = context.AppUsers.Where(x => x.UserName == username).FirstOrDefault().Id,
+                        User = context.AppUsers.Where(x => x.Id == context.AppUsers.Where(x => x.UserName == username).FirstOrDefault().Id).FirstOrDefault(),
+                        OriginalValues = entry.CurrentValues.GetType().Name,
+                        CurrentValues = entry.CurrentValues.GetType().Name,
+                        Time = DateTime.Now.TimeOfDay
+                    };
+                    context.Logs.Add(log);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
         }
     }
