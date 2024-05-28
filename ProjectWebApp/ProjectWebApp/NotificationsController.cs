@@ -13,9 +13,9 @@ namespace ProjectWebApp
     {
         private readonly HSMSContext _context;
 
-        public NotificationsController(HSMSContext context)
+        public NotificationsController()
         {
-            _context = context;
+            _context = new HSMSContext();
         }
 
         // GET: Notifications
