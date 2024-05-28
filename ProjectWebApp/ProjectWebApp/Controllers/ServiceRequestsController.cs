@@ -64,7 +64,7 @@ namespace ProjectWebApp.Controllers
         // GET: ServiceRequests/Create
         public IActionResult Create()
         {
-            ViewData["CommentId"] = new SelectList(_context.Comments, "CommentId", "UserId");
+            ViewData["CommentId"] = new SelectList(_context.Comments, "CommentId", "Notes");
             ViewData["Id"] = new SelectList(_context.Services, "ServiceId", "ServiceName");
             ViewData["TechnicianId"] = new SelectList(_context.AppUsers, "Id", "Id");
             return View();
@@ -100,7 +100,7 @@ namespace ProjectWebApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CommentId"] = new SelectList(_context.Comments, "CommentId", "UserId", serviceRequest.CommentId);
+            ViewData["CommentId"] = new SelectList(_context.Comments, "CommentId", "Notes", serviceRequest.CommentId);
             ViewData["Id"] = new SelectList(_context.Services, "ServiceId", "ServiceName", serviceRequest.Id);
             ViewData["TechnicianId"] = new SelectList(_context.AppUsers, "Id", "Id", serviceRequest.TechnicianId);
             return View(serviceRequest);
@@ -119,7 +119,7 @@ namespace ProjectWebApp.Controllers
             {
                 return NotFound();
             }
-            ViewData["CommentId"] = new SelectList(_context.Comments, "CommentId", "UserId", serviceRequest.CommentId);
+            ViewData["CommentId"] = new SelectList(_context.Comments, "CommentId", "Notes", serviceRequest.CommentId);
             ViewData["Id"] = new SelectList(_context.Services, "ServiceId", "ServiceName", serviceRequest.Id);
             ViewData["TechnicianId"] = new SelectList(_context.AppUsers, "Id", "Id", serviceRequest.TechnicianId);
             return View(serviceRequest);
@@ -159,7 +159,7 @@ namespace ProjectWebApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CommentId"] = new SelectList(_context.Comments, "CommentId", "UserId", serviceRequest.CommentId);
+            ViewData["CommentId"] = new SelectList(_context.Comments, "CommentId", "Notes", serviceRequest.CommentId);
             ViewData["Id"] = new SelectList(_context.Services, "ServiceId", "ServiceName", serviceRequest.Id);
             ViewData["TechnicianId"] = new SelectList(_context.AppUsers, "Id", "Id", serviceRequest.TechnicianId);
             return View(serviceRequest);
