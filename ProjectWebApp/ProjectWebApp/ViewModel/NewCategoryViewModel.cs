@@ -1,6 +1,5 @@
 ﻿#nullable disable
 using HSMSBusinessObjects;
-using System.ComponentModel.DataAnnotations;
 
 namespace ProjectWebApp.ViewModel
 {
@@ -10,7 +9,7 @@ namespace ProjectWebApp.ViewModel
 
         public string? SearchString;
 
-        public IEnumerable<Category> Categories { get; set; }
-        public IEnumerable<AppUser> Users { get; set; }
+        public virtual IEnumerable<Category> Categories { get; set; }
+        public virtual IEnumerable<AppUser> Users { get; set; }
     }
 }

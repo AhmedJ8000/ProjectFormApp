@@ -173,5 +173,26 @@ namespace ProjectWebApp
         {
           return _context.Logs.Any(e => e.LogId == id);
         }
+
+        public static void AddLog(HSMSContext context, string username)
+        {
+            var entries = context.ChangeTracker.Entries();
+
+            foreach (var entry in entries)
+            {
+                Log log = new Log
+                {
+                    Table = entry.Entity.GetType().Name,
+                    Status = entry.State.ToString(),
+                    LDate = DateTime.Now,
+                    UserId = context.AppUsers.Where(x => x.UserName == username).FirstOrDefault().Id,
+                    User = context.AppUsers.Where(x => x.Id == context.AppUsers.Where(x => x.UserName == username).FirstOrDefault().Id).FirstOrDefault(),
+                    OriginalValues = entry.CurrentValues.GetType().Name,
+                    CurrentValues = entry.CurrentValues.GetType().Name,
+                    Time = DateTime.Now.TimeOfDay
+                };
+                context.Logs.Add(log);
+            }
+        }
     }
 }
