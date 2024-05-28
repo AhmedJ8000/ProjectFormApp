@@ -38,6 +38,7 @@
             btnEdit = new Button();
             btnDelete = new Button();
             mntrBtn = new Button();
+            backBtn = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCategories).BeginInit();
             SuspendLayout();
@@ -154,12 +155,24 @@
             mntrBtn.UseVisualStyleBackColor = true;
             mntrBtn.Click += mntrBtn_Click;
             // 
+            // backBtn
+            // 
+            backBtn.FlatStyle = FlatStyle.Flat;
+            backBtn.Location = new Point(693, 402);
+            backBtn.Name = "backBtn";
+            backBtn.Size = new Size(89, 36);
+            backBtn.TabIndex = 8;
+            backBtn.Text = "Back";
+            backBtn.UseVisualStyleBackColor = true;
+            backBtn.Click += backBtn_Click;
+            // 
             // CategoriesMgmt
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(800, 450);
+            Controls.Add(backBtn);
             Controls.Add(mntrBtn);
             Controls.Add(btnDelete);
             Controls.Add(btnEdit);
@@ -187,5 +200,6 @@
         private TextBox txtCategoryID;
         private Label label2;
         private Button mntrBtn;
+        private Button backBtn;
     }
 }

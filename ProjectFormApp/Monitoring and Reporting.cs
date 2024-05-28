@@ -23,12 +23,25 @@ namespace ProjectFormApp
 
         private void Monitoring_and_Reporting_Load(object sender, EventArgs e)
         {
-            Username_lbl.Text = Global.User.UserName;
-            ddlCategory.DataSource = context.Categories.ToList();
-            ddlCategory.DisplayMember = "CategoryName";
-            ddlCategory.ValueMember = "CategoryId";
-            ddlCategory.SelectedItem = null;
-            RefreshData();
+            if (Global.RoleName == "Manager" || Global.RoleName == "Admin")
+            {
+                Username_lbl.Text = Global.User.UserName;
+                ddlCategory.DataSource = context.Categories.ToList();
+                ddlCategory.DisplayMember = "CategoryName";
+                ddlCategory.ValueMember = "CategoryId";
+                ddlCategory.SelectedItem = null;
+                RefreshData();
+                accessLbl.Visible = false;
+                ddlCategory.Enabled = true;
+                groupBox1.Enabled = true;
+            }
+            else
+            {
+                Username_lbl.Text = Global.User.UserName;
+                groupBox1.Visible = false;
+                ddlCategory.Enabled = false;
+                accessLbl.Visible = true;
+            }
         }
 
         public void RefreshData()

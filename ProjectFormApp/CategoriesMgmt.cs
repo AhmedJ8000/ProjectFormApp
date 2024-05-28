@@ -28,6 +28,16 @@ namespace ProjectFormApp
                 btnAdd.Visible = false;
                 btnDelete.Visible = false;
                 btnEdit.Visible = false;
+                backBtn.Visible = true;
+                mntrBtn.Visible = false;
+            }
+            else
+            {
+                btnAdd.Visible = true;
+                btnDelete.Visible = true;
+                btnEdit.Visible = true;
+                mntrBtn.Visible = true;
+                backBtn.Visible = false;
             }
         }
 
@@ -142,6 +152,13 @@ namespace ProjectFormApp
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void backBtn_Click(object sender, EventArgs e)
+        {
+            Monitoring_and_Reporting mar = new Monitoring_and_Reporting();
+            this.Hide();
+            mar.Show();
         }
     }
 }
