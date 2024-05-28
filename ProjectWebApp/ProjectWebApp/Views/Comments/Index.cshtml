@@ -50,7 +50,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.User.Id)
             </td>
-            @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("Technician") || User.IsInRole("User"))
+            @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("Technician"))
             {
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.CommentId" class="btn btn-primary mx-2">
