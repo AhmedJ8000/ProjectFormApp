@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using HSMSBusinessObjects;
 using ProjectWebApp.ViewModel;
 using Microsoft.AspNetCore.Authorization;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ProjectWebApp.Controllers
 {
@@ -34,7 +36,8 @@ namespace ProjectWebApp.Controllers
 
             var categoryVM = new NewCategoryViewModel
             {
-                Categories = categoryList
+                Categories = categoryList,
+                Users = _context.AppUsers
             };
 
             return View(categoryVM);
@@ -64,8 +67,14 @@ namespace ProjectWebApp.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
-            ViewData["ManagerId"] = new SelectList(_context.AppUsers, "Id", "Id");
-            return View();
+            var viewModel = new NewCategoryViewModel
+            {
+                category = new Category(),
+                Categories = _context.Categories,
+                Users = _context.AppUsers
+            };
+
+            return View(viewModel);
         }
 
         // POST: Categories/Create
@@ -74,13 +83,11 @@ namespace ProjectWebApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("CategoryId,CategoryName,Description,ManagerId")] Category category)
+        public IActionResult Create(NewCategoryViewModel newCat)
         {
-            _context.Add(category);
-
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(Index));
+            _context.Categories.Add(newCat.category);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Categories/Edit/5
@@ -175,47 +182,26 @@ namespace ProjectWebApp.Controllers
                 _context.Categories.Remove(category);
             }
 
-            var entries = _context.ChangeTracker.Entries().Where(p => p.State == EntityState.Modified).ToList();
+            var entries = _context.ChangeTracker.Entries();
 
             foreach (var entry in entries)
             {
                 //entry.State.ToString();
 
-                string ov = "";
-                string cv = "";
-
-                foreach(var v in entry.OriginalValues.Properties)
+                Log log = new Log
                 {
-                    ov += v.ToString();
-                }
+                    Type = entry.Entity.GetType().Name,
+                    Date = DateTime.Now,
+                    UserId = _context.AppUsers.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id,
+                    User = _context.AppUsers.Where(x => x.Id == _context.AppUsers.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id).FirstOrDefault(),
+                    OriginalValues = entry.CurrentValues.GetType().Name,
+                    CurrentValues = entry.CurrentValues.GetType().Name,
+                    Source = entry.OriginalValues.EntityType.Name,
+                    Time = DateTime.Now.TimeOfDay
+                };
+                _context.Logs.Add(log);
 
-                foreach (var c in entry.CurrentValues.Properties)
-                {
-                    cv += c.ToString();
-                }
 
-                foreach (var prop in entry.OriginalValues.Properties)
-                {
-                    var originalValue = entry.OriginalValues[prop].ToString();
-                    var currentValue = entry.CurrentValues[prop].ToString();
-                    if (originalValue != currentValue) 
-                    {
-                        Log log = new Log
-                        {
-                            Type = entry.Entity.GetType().Name,
-                            Date = DateTime.Now,
-                            UserId = _context.AppUsers.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id,
-                            User = _context.AppUsers.Where(x => x.Id == _context.AppUsers.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id).FirstOrDefault(),
-                            OriginalValues = originalValue,
-                            CurrentValues = currentValue,
-                            Source = entry.OriginalValues.EntityType.Name,
-                            Time = DateTime.Now.TimeOfDay
-                        };
-                        _context.Logs.Add(log);
-                    }
-                }
-
-                
             }
 
             await _context.SaveChangesAsync();
