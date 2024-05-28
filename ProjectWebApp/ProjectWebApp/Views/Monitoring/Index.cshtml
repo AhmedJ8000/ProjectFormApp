@@ -6,7 +6,7 @@
 }
 
 
-<h1>Request Monitoring</h1>
+<h1>Monitoring Dashboard</h1>
 <form asp-controller="Monitoring" asp-action="Index" method="get">
     @Html.DropDownList("catId", ViewBag.Categories as SelectList, "Select Category", new { @onchange = "this.form.submit()" })
 </form>
