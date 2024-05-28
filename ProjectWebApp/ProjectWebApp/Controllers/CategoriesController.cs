@@ -186,17 +186,16 @@ namespace ProjectWebApp.Controllers
 
             foreach (var entry in entries)
             {
-                //entry.State.ToString();
 
                 Log log = new Log
                 {
-                    Type = entry.Entity.GetType().Name,
-                    Date = DateTime.Now,
+                    Table = entry.Entity.GetType().Name,
+                    Status = entry.State.ToString(),
+                    LDate = DateTime.Now,
                     UserId = _context.AppUsers.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id,
                     User = _context.AppUsers.Where(x => x.Id == _context.AppUsers.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id).FirstOrDefault(),
                     OriginalValues = entry.CurrentValues.GetType().Name,
                     CurrentValues = entry.CurrentValues.GetType().Name,
-                    Source = entry.OriginalValues.EntityType.Name,
                     Time = DateTime.Now.TimeOfDay
                 };
                 _context.Logs.Add(log);
