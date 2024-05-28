@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Administration</h1>
 
 <p>
-    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+    @if (User.IsInRole("Admin"))
     {
         <br />
         <a asp-action="Create" class="btn btn-primary">Create New</a>
@@ -17,9 +17,6 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.log.Source)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.log.Type)
             </th>
@@ -41,15 +38,16 @@
             <th>
                 @Html.DisplayNameFor(model => model.log.User)
             </th>
-            <th></th>
+            @if (User.IsInRole("Admin"))
+            {
+                <br />
+                <a asp-action="Create" class="btn btn-primary">Create New</a>
+            }
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.Logs) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Source)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Type)
             </td>

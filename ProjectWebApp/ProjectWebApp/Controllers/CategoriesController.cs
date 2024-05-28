@@ -76,14 +76,11 @@ namespace ProjectWebApp.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("CategoryId,CategoryName,Description,ManagerId")] Category category)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(category);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["ManagerId"] = new SelectList(_context.AppUsers, "Id", "Id", category.ManagerId);
-            return View(category);
+            _context.Add(category);
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Categories/Edit/5
@@ -172,9 +169,53 @@ namespace ProjectWebApp.Controllers
                 return Problem("Entity set 'HSMSContext.Categories'  is null.");
             }
             var category = await _context.Categories.FindAsync(id);
+            _context.ChangeTracker.DetectChanges();
             if (category != null)
             {
                 _context.Categories.Remove(category);
+            }
+
+            var entries = _context.ChangeTracker.Entries().Where(p => p.State == EntityState.Modified).ToList();
+
+            foreach (var entry in entries)
+            {
+                //entry.State.ToString();
+
+                string ov = "";
+                string cv = "";
+
+                foreach(var v in entry.OriginalValues.Properties)
+                {
+                    ov += v.ToString();
+                }
+
+                foreach (var c in entry.CurrentValues.Properties)
+                {
+                    cv += c.ToString();
+                }
+
+                foreach (var prop in entry.OriginalValues.Properties)
+                {
+                    var originalValue = entry.OriginalValues[prop].ToString();
+                    var currentValue = entry.CurrentValues[prop].ToString();
+                    if (originalValue != currentValue) 
+                    {
+                        Log log = new Log
+                        {
+                            Type = entry.Entity.GetType().Name,
+                            Date = DateTime.Now,
+                            UserId = _context.AppUsers.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id,
+                            User = _context.AppUsers.Where(x => x.Id == _context.AppUsers.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id).FirstOrDefault(),
+                            OriginalValues = originalValue,
+                            CurrentValues = currentValue,
+                            Source = entry.OriginalValues.EntityType.Name,
+                            Time = DateTime.Now.TimeOfDay
+                        };
+                        _context.Logs.Add(log);
+                    }
+                }
+
+                
             }
 
             await _context.SaveChangesAsync();
