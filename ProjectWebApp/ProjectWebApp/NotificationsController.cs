@@ -6,37 +6,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HSMSBusinessObjects;
-using ProjectWebApp.ViewModel;
 
-namespace ProjectWebApp.Controllers
+namespace ProjectWebApp
 {
     public class NotificationsController : Controller
     {
         private readonly HSMSContext _context;
 
-        public NotificationsController()
+        public NotificationsController(HSMSContext context)
         {
-            _context = new HSMSContext();
+            _context = context;
         }
 
         // GET: Notifications
-        public async Task<IActionResult> Index(string SearchString)
+        public async Task<IActionResult> Index()
         {
-            IEnumerable<Notification> notificationList;
-
-            notificationList = _context.Notifications.OrderByDescending(x => x.NDate);
-
-            if (!string.IsNullOrEmpty(SearchString))
-            {
-                notificationList = notificationList.Where(x => x.NotificationId.ToString().Contains(SearchString));
-            }
-
-            var notificationVM = new NewNotificationViewModel
-            {
-                Notifications = notificationList
-            };
-
-            return View(notificationVM);
+            var hSMSContext = _context.Notifications.Include(n => n.User);
+            return View(await hSMSContext.ToListAsync());
         }
 
         // GET: Notifications/Details/5
@@ -48,17 +34,11 @@ namespace ProjectWebApp.Controllers
             }
 
             var notification = await _context.Notifications
+                .Include(n => n.User)
                 .FirstOrDefaultAsync(m => m.NotificationId == id);
             if (notification == null)
             {
                 return NotFound();
-            }
-
-            if (User.IsInRole("Manager") || User.IsInRole("User") && notification.Status == "Unread")
-            {
-                notification.Status = "Read";
-                _context.Update(notification);
-                await _context.SaveChangesAsync();
             }
 
             return View(notification);
@@ -67,6 +47,7 @@ namespace ProjectWebApp.Controllers
         // GET: Notifications/Create
         public IActionResult Create()
         {
+            ViewData["UserId"] = new SelectList(_context.AppUsers, "Id", "Id");
             return View();
         }
 
@@ -75,7 +56,7 @@ namespace ProjectWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NotificationId,Message,Type,Status")] Notification notification)
+        public async Task<IActionResult> Create([Bind("NotificationId,Message,Type,Status,UserId,NDate")] Notification notification)
         {
             if (ModelState.IsValid)
             {
@@ -83,6 +64,7 @@ namespace ProjectWebApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["UserId"] = new SelectList(_context.AppUsers, "Id", "Id", notification.UserId);
             return View(notification);
         }
 
@@ -99,6 +81,7 @@ namespace ProjectWebApp.Controllers
             {
                 return NotFound();
             }
+            ViewData["UserId"] = new SelectList(_context.AppUsers, "Id", "Id", notification.UserId);
             return View(notification);
         }
 
@@ -107,7 +90,7 @@ namespace ProjectWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("NotificationId,Message,Type,Status")] Notification notification)
+        public async Task<IActionResult> Edit(int id, [Bind("NotificationId,Message,Type,Status,UserId,NDate")] Notification notification)
         {
             if (id != notification.NotificationId)
             {
@@ -134,6 +117,7 @@ namespace ProjectWebApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["UserId"] = new SelectList(_context.AppUsers, "Id", "Id", notification.UserId);
             return View(notification);
         }
 
@@ -146,6 +130,7 @@ namespace ProjectWebApp.Controllers
             }
 
             var notification = await _context.Notifications
+                .Include(n => n.User)
                 .FirstOrDefaultAsync(m => m.NotificationId == id);
             if (notification == null)
             {
@@ -169,14 +154,14 @@ namespace ProjectWebApp.Controllers
             {
                 _context.Notifications.Remove(notification);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool NotificationExists(int id)
         {
-            return _context.Notifications.Any(e => e.NotificationId == id);
+          return _context.Notifications.Any(e => e.NotificationId == id);
         }
     }
 }
