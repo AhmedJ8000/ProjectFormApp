@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using HSMSBusinessObjects;
 using ProjectWebApp.ViewModel;
 using Microsoft.AspNetCore.Authorization;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ProjectWebApp.Controllers
 {
@@ -34,7 +36,8 @@ namespace ProjectWebApp.Controllers
 
             var categoryVM = new NewCategoryViewModel
             {
-                Categories = categoryList
+                Categories = categoryList,
+                Users = _context.AppUsers
             };
 
             return View(categoryVM);
@@ -64,8 +67,14 @@ namespace ProjectWebApp.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
-            ViewData["ManagerId"] = new SelectList(_context.AppUsers, "Id", "Id");
-            return View();
+            var viewModel = new NewCategoryViewModel
+            {
+                category = new Category(),
+                Categories = _context.Categories,
+                Users = _context.AppUsers
+            };
+
+            return View(viewModel);
         }
 
         // POST: Categories/Create
@@ -74,16 +83,11 @@ namespace ProjectWebApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("CategoryId,CategoryName,Description,ManagerId")] Category category)
+        public IActionResult Create(NewCategoryViewModel newCat)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(category);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["ManagerId"] = new SelectList(_context.AppUsers, "Id", "Id", category.ManagerId);
-            return View(category);
+            _context.Categories.Add(newCat.category);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Categories/Edit/5
@@ -172,9 +176,31 @@ namespace ProjectWebApp.Controllers
                 return Problem("Entity set 'HSMSContext.Categories'  is null.");
             }
             var category = await _context.Categories.FindAsync(id);
+            _context.ChangeTracker.DetectChanges();
             if (category != null)
             {
                 _context.Categories.Remove(category);
+            }
+
+            var entries = _context.ChangeTracker.Entries();
+
+            foreach (var entry in entries)
+            {
+
+                Log log = new Log
+                {
+                    Table = entry.Entity.GetType().Name,
+                    Status = entry.State.ToString(),
+                    LDate = DateTime.Now,
+                    UserId = _context.AppUsers.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id,
+                    User = _context.AppUsers.Where(x => x.Id == _context.AppUsers.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id).FirstOrDefault(),
+                    OriginalValues = entry.CurrentValues.GetType().Name,
+                    CurrentValues = entry.CurrentValues.GetType().Name,
+                    Time = DateTime.Now.TimeOfDay
+                };
+                _context.Logs.Add(log);
+
+
             }
 
             await _context.SaveChangesAsync();

@@ -1,5 +1,6 @@
 ﻿#nullable disable
 using HSMSBusinessObjects;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjectWebApp.ViewModel
 {

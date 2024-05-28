@@ -28,7 +28,8 @@ namespace ProjectWebApp
 
             var vm = new NewLogViewModel
             {
-                Logs = logList
+                Logs = logList,
+                Users = _context.AppUsers
             };
 
             return View(vm);
